@@ -5,6 +5,7 @@
  * @LastEditTime: 2021-03-15 17:51:17
  * @Description: Description
  */
+const DB = wx.cloud.database().collection('userList');
 const DBCARD = wx.cloud.database().collection("cardList");
 Page({
   data: {
@@ -14,7 +15,8 @@ Page({
     goodCount: 0,
     goodRow: 0,
     isScroll: true,
-    windowHeight: 0
+    windowHeight: 0,
+    isMangerment: false
   },
   onLoad: function (options) {
     wx.getSystemInfo({
@@ -25,13 +27,33 @@ Page({
       }
     });
     // wx.setNavigationBarTitle({
-    //   title: ""
+    //   title: "爱的旅途"
     // });
     this.getCountLoading();
+    wx.getStorage({
+      key: "openId",
+      success: (res) => {
+        this.isManger(res.data);
+      }
+    });
+  },
+  // 查看是否为管理
+  isManger(val) {
+    DB.where({
+      _openid: val
+    }).get({
+      success: userInfo => {
+        if (userInfo.data.length > 0) {
+          this.setData({
+            isMangerment: true
+          });
+        }
+      }
+    });
   },
   async getCountLoading() {
     wx.showLoading({
-      title: "夫人等一下啦",
+      title: "袁太太等一下",
       mask: true
     });
     DBCARD.count({
@@ -52,12 +74,6 @@ Page({
     wx.showNavigationBarLoading(); //在标题栏中显示加载 
     await this.getCountLoading();
   },
-  // onHide: function (options) {
-  //   clearInterval(this.data.timer);
-  // },
-  // onUnload: function (options) {
-  //   clearInterval(this.data.timer);
-  // },
   async getCardList() {
     wx.cloud.callFunction({
       name: "talkingUserOpenId",
@@ -90,14 +106,16 @@ Page({
   },
   managerCard: function (e) {
     let id = e.currentTarget.id;
-    if (this.data.openid == 'o_BMd5IPJeXtDy4h-_rzTR-Kn2zM') {
-      wx.navigateTo({
-        url: "../../pages/updateCard/index?id=" + id + "&type=update"
-      });
-    } else if (this.data.openid == 'o_BMd5ERRE6PLi2dS08lm89tiMgU') {
-      wx.navigateTo({
-        url: "../../pages/updateCard/index?id=" + id + "&type=update"
-      });
+    if (this.data.isMangerment) {
+      if (this.data.openid == 'o_BMd5IPJeXtDy4h-_rzTR-Kn2zM') {
+        wx.navigateTo({
+          url: "../../pages/labelCard/index?id=" + id + "&type=update"
+        });
+      } else if (this.data.openid == 'o_BMd5ERRE6PLi2dS08lm89tiMgU') {
+        wx.navigateTo({
+          url: "../../pages/labelCard/index?id=" + id + "&type=update"
+        });
+      }
     }
   },
   // 倒计时
@@ -120,7 +138,6 @@ Page({
     h = checkTime(h);
     m = checkTime(m);
     s = checkTime(s);
-
     function checkTime(i) {
       if (Number(i) < 10 && Number(i) > 0) {
         i = "0" + i;

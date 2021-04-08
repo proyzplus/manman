@@ -47,10 +47,10 @@
                   </view>
             </view>
       </view>
-      <view class="bottomImg">
-            <image src="../../images/changeimg.png" bindtap="updateimg"></image>
+      <view wx:if="{{isManager}}" class="bottomImg">
+            <image src="../../images/everyLove/changeimg.png" bindtap="updateimg"></image>
             <button bindtap="getUserProfile">
-                  <image src="../../images/changeuser.png"></image>
+                  <image src="../../images/everyLove/changeuser.png"></image>
             </button>
       </view>
 </view>

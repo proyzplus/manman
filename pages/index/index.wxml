@@ -4,8 +4,8 @@
     <text class="wordMain">{{topic}}</text>
   </view>
   <view class="loveSang">
-    <view class="love" bindtap="love">文 案</view>
-    <view class="love" bindtap="sang">图 库</view>
+    <view class="love" bindtap="love">行也思君</view>
+    <view class="love" bindtap="sang">坐也思君</view>
   </view>
   <view class="goods-container" wx:if="{{commodList.length>0}}">
     <view class="goodsSlide">

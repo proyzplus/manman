@@ -23,11 +23,11 @@ App({
               this.globalData.userStatus = true;
             },
             fail: function (res) {
-              console.log(res, 'err');
+              // console.log(res, 'err');
             }
           });
         } else {
-          console.log('cuo');
+          // console.log('cuo');
         }
       }
     });

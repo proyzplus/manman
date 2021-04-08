@@ -23,7 +23,8 @@ Page({
     safeAreaHeader: 50,
     openId: "",
     isLady: false,
-    sayLove: true
+    sayLove: true,
+    isManager: false
   },
   onReady: function () {
     var circleCount = 0;
@@ -92,7 +93,8 @@ Page({
             console.log(res, "通过用户openid获取数据");
             const act_data = res.result;
             this.setData({
-              isLady: act_data.isLady
+              isLady: act_data.isLady,
+              isManager: true
             });
             if (act_data.data.length > 0) {
               const activityData = act_data.data[0];
@@ -107,7 +109,8 @@ Page({
                   this.setData({
                     activityList: act3.data,
                     isLady: false,
-                    sayLove: true
+                    sayLove: true,
+                    isManager: false
                   });
                 }
               });

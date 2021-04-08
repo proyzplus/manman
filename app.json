@@ -1,15 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/mine/index",
+    "pages/everyday/index",
+    "pages/loveCard/index", 
     "pages/mine_edit/index",
     "pages/mine_history/index",
-    "pages/detail/index",
+    "pages/articleDetail/index",
     "pages/love/index",
-    "pages/photoList/index",
-    "pages/type/index",
-    "pages/manman/index",
-    "pages/everyday/index"
+    "pages/photoList/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,20 +24,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "Y Z",
-        "iconPath": "images/bingo.png",
-        "selectedIconPath": "images/bingo-s.png"
+        "iconPath": "images/tabbar/bingo_normal.png",
+        "selectedIconPath": "images/tabbar/bingo_click.png"
       },
       {
         "pagePath": "pages/everyday/index",
         "text": "Love",
-        "iconPath": "images/very.png",
-        "selectedIconPath": "images/very-s.png"
+        "iconPath": "images/tabbar/very_normal.png",
+        "selectedIconPath": "images/tabbar/very_click.png"
       },
       {
-        "pagePath": "pages/type/index",
+        "pagePath": "pages/loveCard/index",
         "text": "HGY",
-        "iconPath": "images/love.png",
-        "selectedIconPath": "images/love-s.png"
+        "iconPath": "images/tabbar/love_normal.png",
+        "selectedIconPath": "images/tabbar/love_click.png"
       }
     ]
   },

@@ -1,4 +1,5 @@
 const DB = wx.cloud.database().collection('userList');
+const DBUS = wx.cloud.database().collection("memories");
 
 Component({
   data: {
@@ -39,7 +40,7 @@ Component({
       };
       DB.where(data).get({
         success(userInfo) {
-          console.log(userInfo, "用户在数据库有没有数据");
+          // console.log(userInfo, "用户在数据库有没有数据");
           if (userInfo.data.length > 0) {
             that.setData({
               userInfo: userInfo.data[0],
@@ -85,7 +86,7 @@ Component({
             }
           });
         }
-      })
+      });
     },
     async addUserInfo() {
       DB.add({
@@ -98,71 +99,97 @@ Component({
         }
       });
     },
-    //编辑信息
-    edit() {
-      if (this.data.isLogin) {
-        wx.navigateTo({
-          url: '../../pages/mine_edit/index',
-        });
-      } else {
-        wx.showToast({
-          title: '主人要先登陆哟!',
+    bindLabel(e) {
+      if (!this.data.isLogin) {
+        return wx.showToast({
+          title: '请先登陆！!',
           icon: 'none',
           image: '../../images/mao.png',
           duration: 3000,
           mask: false,
         });
       }
-    },
-    //我的发布
-    history() {
-      if (this.data.isLogin) {
-        wx.navigateTo({
-          url: '../../pages/mine_history/index',
-        });
-      } else {
-        wx.showToast({
-          title: '主人要先登陆哟!',
-          icon: 'none',
-          image: '../../images/mao.png',
-          duration: 3000,
-          mask: false,
-        });
+      let type = e.currentTarget.dataset.type;
+      let that = this;
+      switch (type) {
+        case "mine_edit":
+          wx.navigateTo({
+            url: '../../pages/mine_edit/index',
+          });
+          break;
+        case "mine_history":
+          wx.navigateTo({
+            url: '../../pages/mine_history/index',
+          });
+          break;
+        case "release":
+          wx.navigateTo({
+            url: '../../pages/release/index',
+          });
+          break;
+        case "loveAdd":
+          wx.navigateTo({
+            url: '../../pages/loveAdd/index',
+          });
+          break;
+        case "updateCard":
+          wx.navigateTo({
+            url: '../../pages/labelCard/index?type=add',
+          });
+          break;
+        case "updateImg":
+          that.updateimg();
+          break;
       }
     },
-    recycle() {
-      if (this.data.isLogin) {
-        wx.navigateTo({
-          url: '../../pages/recycle/index',
-        });
-      } else {
-        wx.showToast({
-          title: '主人要先登陆哟!',
-          icon: 'none',
-          image: '../../images/mao.png',
-          duration: 3000,
-          mask: false,
-        });
-      }
-    },
-    giveme() {
-      if (this.data.isLogin) {
-        wx.navigateTo({
-          url: '../../pages/message/index',
-        });
-      } else {
-        wx.showToast({
-          title: '主人要先登陆哟!',
-          icon: 'none',
-          image: '../../images/mao.png',
-          duration: 3000,
-          mask: false,
-        });
-      }
-    },
-    tore() {
-      wx.navigateTo({
-        url: "../../pages/messList/index"
+    async updateimg() {
+      let that = this;
+      wx.chooseImage({
+        count: 9,
+        success: async res => {
+          wx.showLoading({
+            title: '拼命上传中...',
+          });
+          let nowC = 0;
+          for (let i = 0; i < res.tempFilePaths.length; i++) {
+            const tempFilePaths = res.tempFilePaths[i];
+            const timeName = String(Date.parse(new Date()) / 1000) + i;
+            await wx.compressImage({
+              src: tempFilePaths,
+              quality: 60,
+              success: async res => {
+                let up_file = res.tempFilePath;
+                await wx.cloud.uploadFile({
+                  cloudPath: timeName + ".png",
+                  filePath: up_file,
+                  success: async res => {
+                    await wx.cloud.getTempFileURL({
+                      fileList: [res.fileID],
+                      success: async res => {
+                        await DBUS.add({
+                          data: {
+                            id: Number(timeName),
+                            src: res.fileList[0].tempFileURL,
+                            creatby: this.timi(new Date()),
+                          },
+                          success: res => {
+                            nowC = nowC + 1;
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+          that.data.timer = setInterval(() => {
+            if (nowC == res.tempFilePaths.length) {
+              wx.hideLoading();
+              clearInterval(that.data.timer);
+            }
+          }, 1000);
+        }
       });
     }
   }

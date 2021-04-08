@@ -67,7 +67,7 @@ Page({
           mask: false,
         });
         wx.reLaunch({
-          url: "../type/index"
+          url: "../loveCard/index"
         });
         // wx.navigateBack({ changed: true });//返回上一页
       }
@@ -104,7 +104,7 @@ Page({
           mask: false,
         });
         wx.reLaunch({
-          url: "../type/index"
+          url: "../loveCard/index"
         });
         // wx.navigateBack({ changed: true });//返回上一页
       }

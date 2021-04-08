@@ -1,5 +1,5 @@
-<view class="mineStar">
-  <view class="mineStarHead" style="background-color: #{{backmineColor}};">
+<view class="userInfo">
+  <view class="user-header">
     <view wx:if="{{isLogin}}" class="mineInfo">
       <image src="{{userInfo.avatarUrl}}" class="infoImg"></image>
       <view class="infoName">
@@ -13,19 +13,33 @@
       </view>
     </view>
     <view wx:else>
-      <button class="loginButton" bindtap="getUserProfile">
-        登陆
-      </button>
+      <button class="loginButton" bindtap="getUserProfile">登陆</button>
     </view>
   </view>
-  <view class="mineStarList">
-    <view class="iconfont" bindtap="edit">
-      <image class="icon" src="../../images/edit.png"></image>
-      <text class="word">编辑个人信息</text>
+  <view class="user-function">
+    <view class="iconfont" data-type="mine_edit" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/bear.png"></image>
+      <text class="word">编辑信息</text>
     </view>
-    <view class="iconfont" bindtap="history">
-      <image class="icon" src="../../images/fabu.png"></image>
-      <text class="word">我的发布</text>
+    <view class="iconfont" data-type="mine_history" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/cake.png"></image>
+      <text class="word">发布历史</text>
+    </view>
+    <view class="iconfont" data-type="release" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/airplane.png"></image>
+      <text class="word">纪念故事</text>
+    </view>
+    <view class="iconfont" data-type="loveAdd" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/cloud.png"></image>
+      <text class="word">言表思念</text>
+    </view>
+    <view class="iconfont" data-type="updateCard" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/egg.png"></image>
+      <text class="word">时时刻刻</text>
+    </view>
+    <view class="iconfont" data-type="updateImg" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/camera.png"></image>
+      <text class="word">照片墙</text>
     </view>
   </view>
 </view>

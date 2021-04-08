@@ -49,7 +49,7 @@ Page({
   },
   detail: function (e) {
     wx.navigateTo({
-      url: "../../pages/detail/index?id=" + e.currentTarget.dataset.item._id
+      url: "../../pages/articleDetail/index?id=" + e.currentTarget.dataset.item._id
     });
   },
   update: function (e) {

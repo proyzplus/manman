@@ -1,3 +1,4 @@
+const DB = wx.cloud.database().collection('userList');
 var app = getApp();
 var touchStartX = 0;//触摸时的原点  
 var touchStartY = 0;//触摸时的原点  
@@ -15,7 +16,8 @@ Page({
     commodList: [],
     showModalStatus: false,
     animationData: [],
-    safeWidth: 0
+    safeWidth: 0,
+    isMangerment: false
   },
   onLoad: function (e) {
     wx.getSystemInfo({
@@ -36,6 +38,7 @@ Page({
         this.setData({
           openid: res.result.openid
         });
+        this.isManger();
         if (res.result.openid == 'o_BMd5ERRE6PLi2dS08lm89tiMgU') {
           wx.showModal({
             title: "欢迎夫人来到‘慢慢Home’",
@@ -53,9 +56,25 @@ Page({
       }
     });
   },
+  // 查看是否为管理
+  isManger() {
+    let data = {
+      _openid: this.data.openid
+    };
+    DB.where(data).get({
+      success: userInfo => {
+        console.log(userInfo, "用户在数据库有没有数据");
+        if (userInfo.data.length > 0) {
+          this.setData({
+            isMangerment: true
+          });
+        }
+      }
+    });
+  },
   async loading() {
     wx.showLoading({
-      title: "夫人等一下啦",
+      title: "袁太太等一下",
       mask: true
     });
     let that = this
@@ -111,7 +130,7 @@ Page({
   // 查看商品详情
   toDetailsTap: function (e) {
     wx.navigateTo({
-      url: "../../pages/detail/index?id=" + e.currentTarget.dataset.id
+      url: "../../pages/articleDetail/index?id=" + e.currentTarget.dataset.id
     });
   },
   love() {
@@ -193,8 +212,10 @@ Page({
       }
       if (touchMoveX - touchStartX >= 30 && time < 10) {
         console.log('向右滑动');
-        var currentStatu = "open";
-        this.util(currentStatu);
+        if (this.data.isMangerment) {
+          var currentStatu = "open";
+          this.util(currentStatu);
+        }
       }
     }
     clearInterval(interval);
