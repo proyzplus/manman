@@ -1,0 +1,56 @@
+<view class="msc-mask-layer" style="background-image: url({{activityList.backImg}});background-position:-68px 0px;">
+      <view style="margin-top:{{safeAreaHeader}}px;text-align:center;">Man Man</view>
+      <view class="userInfo" style="margin-top:24px;">
+            <view class="userAvatar" wx:if="{{!isLady}}">
+                  <image src="{{activityList.man.avatarUrl}}" alt="love"></image>
+                  <view style="font-size:24rpx;color:#fff;">{{activityList.man.name}}</view>
+                  <view style="font-size:24rpx;color:#fff;">想她{{activityList.man.total}}天</view>
+            </view>
+            <view class="userAvatar" wx:if="{{isLady}}">
+                  <image src="{{activityList.woman.avatarUrl}}" alt="love"></image>
+                  <view style="font-size:24rpx;color:#fff;">{{activityList.woman.name}}</view>
+                  <view style="font-size:24rpx;color:#fff;">想他{{activityList.woman.total}}天</view>
+            </view>
+            <view class="title">
+                  <view class="datetime">
+                        <view class="times">
+                              <text>{{year}}</text>
+                              <text style="color:red;">❤</text>
+                              <text>{{month}}</text>
+                              <text style="color:red;">❤</text>
+                              <text>{{day}}</text>
+                        </view>
+                        <view class="times">
+                              <text>{{hour}}</text>
+                              <text style="color:red;">❤</text>
+                              <text>{{minute}}</text>
+                              <text style="color:red;">❤</text>
+                              <text>{{second}}</text>
+                        </view>
+                  </view>
+            </view>
+            <view class="userAvatar" wx:if="{{!isLady}}">
+                  <image src="{{activityList.woman.avatarUrl}}" alt="love"></image>
+                  <view style="font-size:24rpx;color:#fff;">{{activityList.woman.name}}</view>
+                  <view style="font-size:24rpx;color:#fff;">想他{{activityList.woman.total}}天</view>
+            </view>
+            <view class="userAvatar" wx:if="{{isLady}}">
+                  <image src="{{activityList.man.avatarUrl}}" alt="love"></image>
+                  <view style="font-size:24rpx;color:#fff;">{{activityList.man.name}}</view>
+                  <view style="font-size:24rpx;color:#fff;">想他{{activityList.man.total}}天</view>
+            </view>
+      </view>
+      <view wx:if="{{!sayLove}}" class="bottomMiddleHeaderView" bindtap="order_submit">
+            <view class="bottomMiddleHeaderItem" animation="{{animationMiddleHeaderItem}}">
+                  <view class="bottomMiddleHeaderItemSubView">
+                        <image src="../../images/miss.png" animation="{{animationMiddleHeaderItem}}"></image>
+                  </view>
+            </view>
+      </view>
+      <view class="bottomImg">
+            <image src="../../images/changeimg.png" bindtap="updateimg"></image>
+            <button bindtap="getUserProfile">
+                  <image src="../../images/changeuser.png"></image>
+            </button>
+      </view>
+</view>

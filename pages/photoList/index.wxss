@@ -1,0 +1,28 @@
+.free-WaterfallFlow {
+      width: 94%;
+      margin: auto;
+      column-count: 2;
+}
+
+.free-WaterfallFlow .flex-wrap {
+      display: inline-block;
+      width: 98%;
+      margin-bottom: 2%;
+      padding: 2%;
+      padding-top: 5%;
+      margin-right: 2%;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      text-align: center;
+}
+
+.flex-wrap image {
+      width: 95%;
+      margin: 0 auto;
+}
+
+.flex-wrap view:nth-child(2) {
+      font-size: 13px;
+      padding: 2% 0;
+      color: #aaa;
+      text-align: right;
+}

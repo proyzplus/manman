@@ -1,0 +1,3 @@
+<i-input value="{{ nickName }}" bind:change="editName" autofocus title="昵称" maxlength="12" placeholder="请输入昵称(最多12字)" />
+<i-input value="{{ autograph }}" bind:change="editautograph" title="个性签名" autofocus placeholder="请输入个性签名(最多50字)" maxlength="50" />
+<button class="submit" bindtap="submit">提交</button>

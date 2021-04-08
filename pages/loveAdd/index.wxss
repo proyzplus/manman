@@ -1,0 +1,19 @@
+/* pages/loveAdd/index.wxss */
+
+.textarea-count {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+}
+
+.textarea-count textarea {
+      width: 100%;
+      background-color: #ffffff;
+}
+
+.handleClick {
+      width: 320rpx;
+      height: 92rpx;
+      border-radius: 8rpx;
+      background-color: aquamarine;
+      color: #ffffff;
+}

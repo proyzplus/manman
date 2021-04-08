@@ -1,0 +1,10 @@
+<view style="margin-bottom:6px;" wx:for="{{listData}}" wx:key="index" data-word="{{item.word}}" bindtap="handleClick">
+  <i-card title="{{item.userInfo.nickName}}" extra="{{item.creatby}}" thumb="{{item.userInfo.avatarUrl}}">
+    <view slot="content">{{item.word}}</view>
+  </i-card>
+</view>
+<view style="display:flex;margin-top:20px;margin-bottom:20px;">
+  <button class="tosece" bindtap="returnPage">上一页</button>
+  <text style="line-height:92rpx;">第 {{page+1}} 页</text>
+  <button v-if="listData.length>0" class="next" bindtap="nextPage">下一页</button>
+</view>

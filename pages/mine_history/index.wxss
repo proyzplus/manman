@@ -1,0 +1,45 @@
+.none {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+}
+
+.goto {
+      background-color: #fc7d22;
+      color: #fff;
+      font-weight: normal;
+      margin-top: 40px;
+      display: block;
+      border-radius: 8px;
+}
+
+.forts {
+      width: 100%;
+      display: flex !important;
+      flex-wrap: wrap !important;
+}
+.forte{
+      width: 94%;
+      display: flex !important;
+      flex-wrap: wrap !important;
+}
+.fort {
+      width: 90px !important;
+      height: 28px;
+      line-height: 30px !important;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: normal;
+      display: block;
+      letter-spacing: 6rpx;
+}
+.fir {
+      background-color: #fc7d22;
+}
+.sec{
+      background-color: rgb(6, 192, 192);
+}
+.thi{
+      background-color: rgb(14, 187, 129);
+}

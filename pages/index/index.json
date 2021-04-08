@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "userInfo": "../../dist/userInfo/index"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

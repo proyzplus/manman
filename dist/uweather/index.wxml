@@ -1,0 +1,77 @@
+<view class="padding-sm">
+  <view class="bg-gradual-blue" style="display: flex;flex-direction: row;">
+    <view style="width:50%;height:100%;color:#1A94E6;">
+      <view class="icon sun-shower " wx:if="{{weather == '太阳雨'}}">
+        <view class="cloud"></view>
+        <view class="sun">
+          <view class="rays"></view>
+        </view>
+        <view class="rain"></view>
+      </view>
+      <view class="icon sun-shower " wx:if="{{weather == '多云'}}">
+        <view class="cloud"></view>
+        <view class="sun">
+          <view class="rays"></view>
+        </view>
+      </view>
+      <view class="icon thunder-storm" wx:if="{{weather == '雷'}}">
+        <view class="cloud"></view>
+        <view class="lightning">
+          <view class="bolt"></view>
+          <view class="bolt"></view>
+        </view>
+      </view>
+      <view class="icon cloudy" wx:if="{{weather == '阴'}}">
+        <view class="cloud"></view>
+        <view class="cloud"></view>
+      </view>
+      <view class="icon flurries" wx:if="{{weather == '雪'}}">
+        <view class="cloud"></view>
+        <view class="snow">
+          <view class="flake"></view>
+          <view class="flake"></view>
+        </view>
+      </view>
+      <view class="icon sunny" wx:if="{{weather == '晴'}}">
+        <view class="sun">
+          <view class="rays"></view>
+        </view>
+      </view>
+      <view class="icon rainy" wx:if="{{weather == '雨'}}">
+        <view class="cloud"></view>
+      </view>
+    </view>
+    <!-- 文字部分 -->
+    <view style="width:50%;height:100%;">
+      <view class="title">
+        <view class="datetime">
+          <view class="times">
+            <text>{{year}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{month}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{day}}</text>
+          </view>
+          <view class="times">
+            <text>{{hour}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{minute}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{second}}</text>
+          </view>
+          <view class="times">
+            <text>{{obj.province}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{obj.city}}</text>
+          </view>
+          <view class="times">
+            <text>{{obj.temperature}}</text>
+            <text style="color:red;">❤</text>
+            <text>{{obj.weather}}</text>
+            <text style="color:red;">❤</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

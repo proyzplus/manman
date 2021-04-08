@@ -1,0 +1,56 @@
+page {
+      overflow: auto !important;
+      /* background-color: #fcd202; */
+      background-color: #fddcdc;
+      /* background-image: url('https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/1583000298.png?sign=1ea5b05aef7f08be93d5a6ee6fb9902b&t=1614582753');
+      background-size: 100% 100%; */
+}
+
+.type-card {
+      width: 92%;
+      height: 420rpx;
+      margin: auto;
+      border-radius: 8rpx;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      padding: 16rpx;
+      margin-top: 4px;
+}
+
+.type-back {
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      text-align: center;
+      float: left;
+      width: 100%;
+      height: 420rpx;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      /* -webkit-filter: blur(2px);
+      -moz-filter: blur(2px);
+      -o-filter: blur(2px);
+      -ms-filter: blur(2px);
+      filter: blur(2px); */
+}
+
+.type-content {
+      position: absolute;
+      left: 20rpx;
+      right: 20rpx;
+      text-align: center;
+      color: #ffffff;
+}
+
+.content-name {
+      position: relative;
+      top: 108rpx;
+      font-size: 52rpx;
+      display: block;
+}
+
+.content-time {
+      display: block;
+      position: relative;
+      top: 168rpx;
+      font-size: 68rpx;
+}

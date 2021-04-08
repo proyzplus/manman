@@ -1,0 +1,27 @@
+<view class="tabBoxIndex">
+      <!-- <uweather></uweather> -->
+      <view class="type_list" wx:if="{{isDispaly}}">
+            <navigator class="navigator" url="../../pages/release/index">编写故事</navigator>
+            <navigator class="navigator" url="../../pages/loveAdd/index">编写情话</navigator>
+      </view>
+      <view class="type_list" wx:if="{{isDispaly}}">
+            <navigator class="navigator" url="../../pages/updateCard/index?type=add">
+                  新增倒计时
+            </navigator>
+            <button class="mybutton" bindtap="updateimg">新增图库</button>
+      </view>
+      <view class="stars">
+            <block wx:for="{{stararray}}" wx:key="stararray" wx:for-item="item" wx:for-index="index">
+                  <view class="star"
+                        style="transform-origin: 0px 0px {{item.curR}}px; transform: translate3d(0px, 0px, {{item.curR}}px) rotateY({{item.rotateY}}deg) rotateX({{item.rotateX}}deg) scale({{item.s}}, {{item.s}});">
+                  </view>
+            </block>
+      </view>
+      <view class="stars2">
+            <block wx:for="{{stararray}}" wx:key="stararray" wx:for-item="item" wx:for-index="index">
+                  <view class="star"
+                        style="transform-origin: 0px 0px {{item.curR}}px; transform: translate3d(0px, 0px, {{item.curR}}px) rotateY({{item.rotateY}}deg) rotateX({{item.rotateX}}deg) scale({{item.s}}, {{item.s}});">
+                  </view>
+            </block>
+      </view>
+</view>

@@ -1,0 +1,10 @@
+<view class="cardListStyle">
+      <scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
+            <view class="type-card" wx:for="{{cardList}}" wx:key="id" id='{{item.id}}' bindtap="managerCard" style="margin-bottom:16rpx;">
+                  <view class="type-back" style="background-image: url('{{item.back}}')">
+                        <text class="content-name">{{item.word}}</text>
+                        <text class="content-time">{{item.lastMitune}}</text>
+                  </view>
+            </view>
+      </scroll-view>
+</view>

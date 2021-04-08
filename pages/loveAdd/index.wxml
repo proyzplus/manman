@@ -1,0 +1,5 @@
+<!-- <i-input title="情话-first" bind:blur="word" value="{{ word }}" autofocus maxlength="50" /> -->
+<view class='textarea-count'>
+      <textarea placeholder='请输入你想发布的文案（不用担心 我在爱你）' bind:input="bindinput" value="{{ word }}"></textarea>
+</view>
+<button class="handleClick" bindtap="handleClick">立即提交</button>

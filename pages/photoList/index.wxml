@@ -1,0 +1,14 @@
+<view class="free-WaterfallFlow">
+  <block>
+    <view class="flex-wrap" wx:for="{{imageSrc}}" wx:key='{{item.src}}' wx:if="{{index%2!=''}}">
+      <image mode="widthFix" src="{{item.src}}"></image>
+      <view>{{item.creatby}}</view>
+    </view>
+  </block>
+  <block>
+    <view class="flex-wrap" wx:for="{{imageSrc}}" wx:key='{{item.src}}' wx:if="{{index%2==''}}">
+      <image mode="widthFix" src="{{item.src}}"></image>
+      <view>{{item.creatby}}</view>
+    </view>
+  </block>
+</view>

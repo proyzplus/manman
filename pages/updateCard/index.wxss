@@ -1,0 +1,22 @@
+.updateImg {
+      width: 92%;
+      height: 64rpx;
+      line-height: 64rpx;
+      height: auto;
+      margin: auto;
+      display: flex;
+}
+
+input {
+      border-bottom: 1px solid lightgray;
+      width: 70%;
+      margin-top: 12rpx;
+}
+
+.updaimg {
+      width: 140px;
+      height: 36px;
+      background-color: #19be6b;
+      line-height: 36px;
+      color: #fff;
+}

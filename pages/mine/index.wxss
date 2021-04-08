@@ -1,0 +1,100 @@
+.mineStar {
+  width: 100%;
+  height: 100%;
+  /* background-color: #fcd202; */
+}
+
+.mineStarHead {
+  width: 100%;
+  margin: auto;
+  height: 100px;
+}
+
+.mineInfo {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.infoImg {
+  width: 68px;
+  height: 68px;
+  border: 1px solid #ddd;
+  float: left;
+  margin: 20rpx 20rpx;
+  border-radius: 50%;
+}
+
+.infoName {
+  width: 70%;
+  height: 100px;
+}
+
+.name {
+  color: #fff;
+  width: 100%;
+  margin-top: 16px;
+  height: 24px;
+  font-size: 18px;
+  /* border: 1px solid aqua; */
+}
+
+.autograph {
+  width: 100%;
+  height: 32px;
+  /* border: 1px solid aqua; */
+  font-size: 11px;
+  padding-top: 6px;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #fff;
+}
+
+.mineStarList {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+
+.iconfont {
+  /* width: 100%; */
+  height: 49px;
+  line-height: 49px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 30px;
+  /* padding-right: -30px; */
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  text-align: center;
+  vertical-align: middle;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  padding-top: 15px;
+}
+
+.word {
+  padding-left: 8px;
+  font-size: 14px;
+}
+
+.loginButton {
+  width: 240px;
+  margin: auto;
+  background-color: aquamarine;
+  color: #fff;
+}

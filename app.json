@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/index",
+    "pages/mine_edit/index",
+    "pages/mine_history/index",
+    "pages/detail/index",
+    "pages/love/index",
+    "pages/photoList/index",
+    "pages/type/index",
+    "pages/manman/index",
+    "pages/everyday/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fddcdc",
+    "navigationBarTitleText": "Y & H",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#fff",
+    "selectedColor": "#ff6900",
+    "backgroundColor": "#fddcdc",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "Y Z",
+        "iconPath": "images/bingo.png",
+        "selectedIconPath": "images/bingo-s.png"
+      },
+      {
+        "pagePath": "pages/everyday/index",
+        "text": "Love",
+        "iconPath": "images/very.png",
+        "selectedIconPath": "images/very-s.png"
+      },
+      {
+        "pagePath": "pages/type/index",
+        "text": "HGY",
+        "iconPath": "images/love.png",
+        "selectedIconPath": "images/love-s.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,21 @@
+<view wx:if="{{!release}}" class="none">
+      <image class="" src="../../images/null.png"></image>
+      <text style="display:block;">你还没有发布过哟</text>
+      <button class="goto" bindtap="toMessagee">点击我联系管理员</button>
+</view>
+<view wx:else>
+      <view style="margin-top:6px;" wx:for="{{release}}" wx:key="index">
+            <i-card title="{{item.title}}" extra="{{item.time}}" thumb="{{item.showImg}}">
+                  <view slot="content">{{item.introduction}}</view>
+                  <view slot="footer" class="forts">
+                        <!-- bindtap='hideContent' wx:if="{{choose}}" animation='{{animationData}}' -->
+                        <view class="forte">
+                              <button data-item="{{item}}" bindtap="detail" class="fort fir">查看</button>
+                              <button data-item="{{item}}" bindtap="update" class="fort sec">编辑</button>
+                              <button data-item="{{item}}" bindtap="delete" class="fort thi">删除</button>
+                        </view>
+                        <!-- <view bindtap='showContent' style="float:right;">. . .</view> -->
+                  </view>
+            </i-card>
+      </view>
+</view>

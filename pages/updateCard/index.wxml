@@ -1,0 +1,28 @@
+<view class="type-card">
+      <view class="type-back" style="background-image: url('{{img_url}}')"></view>
+      <view class="type-content">
+            <text class="content-name">{{word}}</text>
+            <text class="content-time">{{lastTime}}</text>
+      </view>
+</view>
+<view class="updateImg" style="display:flex;">
+      <text class="actileImg">文案：</text>
+      <input class="weui-input" auto-focus placeholder="请输入文案" bindinput="bindKeyName" />
+</view>
+<view class="updateImg" style="display:flex;">
+      <text class="actileImg">日期：</text>
+      <view class="tui-picker-content">
+            <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+                  <view class="tui-picker-detail">
+                        {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}}
+                  </view>
+            </picker>
+      </view>
+</view>
+<view class="updateImg" style="display:flex;">
+      <text class="actileImg">背景：</text>
+      <button class="updaimg" bindtap="updateimg">上传照片</button>
+</view>
+
+<button wx:if="{{pageType=='update'}}" style="margin-top:72rpx;" class="updaimg" bindtap="readyUpdate">确定修改</button>
+<button wx:else style="margin-top:72rpx;" class="updaimg" bindtap="addNewCard">立即新增</button>

@@ -1,0 +1,25 @@
+@import "../../wxParse/wxParse.wxss";
+
+.headtop {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+}
+
+.userImg {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-top: 8px;
+      margin-bottom: 10px;
+}
+
+.userName {
+      line-height: 48px;
+      padding-left: 8px;
+      font-size: 16px;
+}
+.time{
+      font-size: 10px;
+      line-height: 48px;
+}

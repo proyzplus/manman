@@ -1,0 +1,56 @@
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class="today">
+    <text class="title">慢慢 Home</text>
+    <text class="wordMain">{{topic}}</text>
+  </view>
+  <view class="loveSang">
+    <view class="love" bindtap="love">文 案</view>
+    <view class="love" bindtap="sang">图 库</view>
+  </view>
+  <view class="goods-container" wx:if="{{commodList.length>0}}">
+    <view class="goodsSlide">
+      <view wx:for="{{commodList}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item._id}}">
+        <view class="goods-box" wx:if="{{index%2==0}}">
+          <view class="img-box">
+            <image src="{{item.showImg}}" class="image" mode="aspectFill" lazy-load="true" />
+          </view>
+          <view class="talkTitle">{{item.title}}</view>
+          <view class="goods-title">{{item.introduction}}</view>
+          <view class="bottom">
+            <view class="toux-name">
+              <image class="toux" src="{{item.userInfo.avatarUrl}}"></image>
+              <text class="name">{{item.userInfo.nickName}}</text>
+            </view>
+            <view class="love-num">
+              <text class="lovetime">{{item.creatby}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="goodsSlide">
+      <view wx:for="{{commodList}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item._id}}">
+        <view class="goods-box" wx:if="{{index%2==1}}">
+          <view class="img-box">
+            <image src="{{item.showImg}}" class="image" mode="aspectFill" lazy-load="true" />
+          </view>
+          <view class="talkTitle">{{item.title}}</view>
+          <view class="goods-title">{{item.introduction}}</view>
+          <view class="bottom">
+            <view class="toux-name">
+              <image class="toux" src="{{item.userInfo.avatarUrl}}"></image>
+              <text class="name">{{item.userInfo.nickName}}</text>
+            </view>
+            <view class="love-num">
+              <text class="lovetime">{{item.creatby}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='mask' bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view class='Drawer' animation="{{animationData}}" wx:if="{{showModalStatus}}" style="position: fixed;top: 0;background: #fddcdc;width:{{safeWidth}}px;height: 100%;left: {{-safeWidth}}px;z-index: 200;">
+  <userInfo></userInfo>
+</view>

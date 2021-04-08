@@ -1,0 +1,96 @@
+@import "../../common/lib/weui.wxss";
+@import "../../editor/assets/iconfont.wxss";
+
+
+.wrapper {
+      padding: 5px;
+}
+
+.iconfont {
+      display: inline-block;
+      padding: 8px 8px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 20px;
+}
+
+.toolbar {
+      position: fixed;
+      top: 80px;
+      background-color: #fff;
+      z-index: 9999;
+      box-sizing: border-box;
+      border-bottom: 0;
+      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+
+.ql-container {
+      box-sizing: border-box;
+      padding: 12px 15px;
+      width: 100%;
+      min-height: 30vh;
+      height: auto;
+      background: #fff;
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+}
+
+.ql-active {
+      color: #06c;
+}
+
+.basicInfo {
+      margin-top: 40px;
+}
+
+.updateImg {
+      width: 92%;
+      height: auto;
+      margin: auto;
+}
+
+.actileImg {
+      text-align: left;
+      display: block;
+      line-height: 30px;
+      font-size: 15px;
+      color: gray;
+}
+
+.updaimg {
+      width: 140px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #19be6b;
+      color: #fff;
+}
+
+.actile_img {
+      width: 300px;
+      height: 300px;
+      margin: auto;
+      text-align: center;
+}
+
+.my_img {
+      width: 300rpx;
+}
+
+.tosece {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background-color: #19be6b;
+      color: #fff;
+      font-weight: normal;
+}
+
+.next {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      background-color: #19be6b;
+      color: #fff;
+      font-weight: normal;
+}

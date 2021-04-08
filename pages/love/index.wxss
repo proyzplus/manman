@@ -1,0 +1,36 @@
+ .fort {
+   width: 90px !important;
+   height: 28px;
+   line-height: 30px !important;
+   border-radius: 20px;
+   color: #fff;
+   font-size: 12px;
+   font-weight: normal;
+   letter-spacing: 6rpx;
+ }
+
+ .thi {
+   background-color: rgb(14, 187, 129);
+ }
+
+ .cardList {
+   margin-bottom: 12rpx;
+ }
+
+ .tosece {
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+   background-color: #fff;
+   color: #ff6900;
+   font-weight: normal;
+   border: 1px solid #ff6900;
+ }
+
+ .next {
+   border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+   background-color: #fff;
+   color: #ff6900;
+   font-weight: normal;
+   border: 1px solid #ff6900;
+ }

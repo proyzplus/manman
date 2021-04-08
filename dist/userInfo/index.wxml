@@ -1,0 +1,31 @@
+<view class="mineStar">
+  <view class="mineStarHead" style="background-color: #{{backmineColor}};">
+    <view wx:if="{{isLogin}}" class="mineInfo">
+      <image src="{{userInfo.avatarUrl}}" class="infoImg"></image>
+      <view class="infoName">
+        <view class="name">
+          <text>{{userInfo.nickName}}</text>
+        </view>
+        <view class="autograph">
+          <text wx:if="{{userInfo.autograph}}">{{userInfo.autograph}}</text>
+          <text wx:else>你还没有个性签名哟(＾Ｕ＾)ノ~ＹＯ</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <button class="loginButton" bindtap="getUserProfile">
+        登陆
+      </button>
+    </view>
+  </view>
+  <view class="mineStarList">
+    <view class="iconfont" bindtap="edit">
+      <image class="icon" src="../../images/edit.png"></image>
+      <text class="word">编辑个人信息</text>
+    </view>
+    <view class="iconfont" bindtap="history">
+      <image class="icon" src="../../images/fabu.png"></image>
+      <text class="word">我的发布</text>
+    </view>
+  </view>
+</view>
