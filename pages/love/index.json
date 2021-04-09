@@ -1,5 +1,7 @@
 {
   "usingComponents": {
     "i-card": "../../dist/card/index"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

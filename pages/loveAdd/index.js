@@ -42,7 +42,11 @@ Page({
     DBLOVE.add({
       data: {
         creatby: that.timi(new Date()),
-        userInfo: that.data.userInfo,
+        userInfo: {
+          _openid: that.data.userInfo._openid,
+          avatarUrl: that.data.userInfo.avatarUrl,
+          nickName: that.data.userInfo.nickName,
+        },
         word: that.data.word,
         id: Number(that.data.total) + 1
       },
@@ -55,10 +59,7 @@ Page({
           duration: 1500,
           mask: false,
         });
-        wx.navigateBack({ changed: true });//返回上一页
-        // wx.reLaunch({
-        //   url: '../../pages/index/index'
-        // });
+        wx.navigateBack({ changed: true });//返回上一页 
       }
     });
   },
