@@ -43,7 +43,7 @@
       <view wx:if="{{!sayLove}}" class="bottomMiddleHeaderView" bindtap="order_submit">
             <view class="bottomMiddleHeaderItem" animation="{{animationMiddleHeaderItem}}">
                   <view class="bottomMiddleHeaderItemSubView">
-                        <image src="../../images/miss.png" animation="{{animationMiddleHeaderItem}}"></image>
+                        <image src="../../images/everyLove/miss.png" animation="{{animationMiddleHeaderItem}}"></image>
                   </view>
             </view>
       </view>

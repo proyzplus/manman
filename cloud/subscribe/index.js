@@ -8,9 +8,9 @@ cloud.init({
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const { OPENID } = cloud.getWXContext();
+    // const { OPENID } = cloud.getWXContext();
     const result = await cloud.openapi.subscribeMessage.send({
-      touser: OPENID,
+      touser: event.openid,
       page: 'pages/everyday/index',
       data: {
         thing1: {

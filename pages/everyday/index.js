@@ -120,7 +120,17 @@ Page({
       }
     });
   },
+  // 获取access_token
+  // order_submit() {
+  //   wx.request({
+  //     url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2d3bd38e908ab0c2&secret=20e0696130355fef96653de8989bce26',
+  //     success: res => {
+  //       console.log(res)
+  //     }
+  //   })
+  // },
   order_submit() {
+    let toUser = null;
     const {
       openId,
       activityList
@@ -128,12 +138,14 @@ Page({
     let act_continuous = "";
     let act_total = "";
     if (openId == activityList.manOpenid) {
+      toUser = activityList.womanOpenid;
       act_continuous = Number(activityList.man.continuous) + 1;
       act_total = Number(activityList.man.total) + 1;
       activityList.man.continuous = act_continuous;
       activityList.man.total = act_total;
       activityList.man.sayLove = true;
     } else {
+      toUser = activityList.manOpenid;
       act_continuous = Number(activityList.woman.continuous) + 1;
       act_total = Number(activityList.woman.total) + 1;
       activityList.woman.continuous = act_continuous;
@@ -145,7 +157,8 @@ Page({
       sayLove: true
     });
     let message = {
-      act_title: this.data.activityList.title + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"), // 活动标题
+      act_title: "我好想你啊" + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"),
+      // act_title: this.data.activityList.title + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"), // 活动标题
       act_continuous: act_continuous, // 连续签到天数
       act_total: act_total, // 累计签到天数
       act_phone: this.data.act_phone, // 设备ID
@@ -159,6 +172,7 @@ Page({
             .callFunction({
               name: 'subscribe',
               data: {
+                openid: toUser,
                 message: message
               },
             })
