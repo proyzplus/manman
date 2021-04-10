@@ -121,6 +121,9 @@ Page({
     });
   },
   commentDear() {
+    if (this.data.comment) {
+      return false;
+    }
     let commentLi = {
       _openid: this.data.userInfo._openid,
       avatarUrl: this.data.userInfo.avatarUrl,

@@ -11,7 +11,13 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/photoList/index",
+          "pathName": "pages/photoList/index",
+          "scene": null
+        }
+      ]
     }
   }
 }
