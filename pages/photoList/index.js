@@ -8,22 +8,6 @@ Page({
   },
   onLoad() {
     this.loading();
-    // let that = this;
-    // wx.cloud.callFunction({
-    //   name: "getMemories",
-    //   data: {
-    //     row: 0
-    //   },
-    //   success(res) {
-    //     let photoList = res.result.data;
-    //     photoList.sort(function (a, b) {
-    //       return b.creatby - a.creatby;
-    //     });
-    //     that.setData({
-    //       imageSrc: photoList
-    //     });
-    //   }
-    // });
   },
   async loading() {
     wx.showLoading({
@@ -84,6 +68,6 @@ Page({
     wx.previewImage({
       current: e.currentTarget.dataset.src,
       urls: [e.currentTarget.dataset.src]
-    })
+    });
   }
 });

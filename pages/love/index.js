@@ -121,7 +121,7 @@ Page({
     });
   },
   commentDear() {
-    if (this.data.comment) {
+    if (!this.data.comment) {
       return false;
     }
     let commentLi = {

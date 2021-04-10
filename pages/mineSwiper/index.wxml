@@ -1,0 +1,5 @@
+<button bindtap="updateImage">新增swiper</button>
+<view style="margin-top:8rpx;" wx:for="{{swiperList}}" wx:key="index">
+      <image class="image" src="{{item}}" mode="aspectFill"></image>
+      <image data-item="{{item}}" bindtap="deleteSwiper" style="width:64rpx;height:64rpx;margin-left:24rpx;" src="../../images/delete.png"></image>
+</view>

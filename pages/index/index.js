@@ -1,15 +1,10 @@
 const DB = wx.cloud.database().collection('userList');
+const DBAC = wx.cloud.database().collection("activity");
 var app = getApp();
-var touchStartX = 0;//触摸时的原点  
-var touchStartY = 0;//触摸时的原点  
-var time = 0;// 时间记录，用于滑动时且时间小于1s则执行左右滑动  
-var interval = "";// 记录/清理时间记录  
-var touchMoveX = 0; // x轴方向移动的距离
-var touchMoveY = 0; // y轴方向移动的距离
 Page({
   data: {
     userInfo: {},
-    topic: "温柔的晚风,傍晚的晚餐,解暑的西瓜,冒泡的啤酒,从今年开始每个夏天都要和你过啦!",
+    topic: "我希望有个如你一般的人，如山间清爽的风，如古城温暖的光。从清晨到傍晚，由山野到书房。只要最后是你，就好！",
     openid: '',
     goodCount: 0,
     goodRow: 0,
@@ -17,13 +12,22 @@ Page({
     showModalStatus: false,
     animationData: [],
     safeWidth: 0,
-    isMangerment: false
+    isMangerment: false,
+    lastTapTime: 0,
+    imgUrls: []
   },
   onLoad: function (e) {
     wx.getSystemInfo({
       success: res => {
         this.setData({
-          safeWidth: Number(res.safeArea.width) - 98
+          safeWidth: (Number(res.safeArea.width) / 2) + 50
+        });
+      }
+    });
+    DBAC.get({
+      success: res => {
+        this.setData({
+          imgUrls: res.data[1].swiperList
         });
       }
     });
@@ -115,7 +119,8 @@ Page({
     wx.cloud.callFunction({
       name: "talkingData",
       data: {
-        row: this.data.goodRow
+        row: this.data.goodRow,
+        type: "normal"
       },
       success: res => {
         this.setData({
@@ -127,7 +132,7 @@ Page({
       }
     });
   },
-  // 查看商品详情
+  // 查看详情
   toDetailsTap: function (e) {
     wx.navigateTo({
       url: "../../pages/articleDetail/index?id=" + e.currentTarget.dataset.id
@@ -175,50 +180,23 @@ Page({
       });
     }
   },
-  // 触摸开始事件  
-  touchStart: function (e) {
-    touchStartX = e.touches[0].pageX; // 获取触摸时的原点  
-    touchStartY = e.touches[0].pageY; // 获取触摸时的原点  
-    // 使用js计时器记录时间    
-    interval = setInterval(function () {
-      time++;
-    }, 100);
-  },
-  // 触摸移动事件  
-  touchMove: function (e) {
-    touchMoveX = e.touches[0].pageX;
-    touchMoveY = e.touches[0].pageY;
-  },
-  // 触摸结束事件  
-  touchEnd: function (e) {
-    var moveX = touchMoveX - touchStartX;
-    var moveY = touchMoveY - touchStartY;
-    if (Math.sign(moveX) == -1) {
-      moveX = moveX * -1;
-    }
-    if (Math.sign(moveY) == -1) {
-      moveY = moveY * -1;
-    }
-    if (moveX <= moveY) {
-      if (touchMoveY - touchStartY <= -30 && time < 10) {
-        console.log("向上滑动");
-      }
-      if (touchMoveY - touchStartY >= 30 && time < 10) {
-        console.log('向下滑动 ');
-      }
-    } else {
-      if (touchMoveX - touchStartX <= -30 && time < 10) {
-        console.log("左滑页面");
-      }
-      if (touchMoveX - touchStartX >= 30 && time < 10) {
-        console.log('向右滑动');
+  doubleClick(e) {
+    let curTime = e.timeStamp;
+    let lastTime = e.currentTarget.dataset.time;
+    if (curTime - lastTime > 0) {
+      if (curTime - lastTime < 300) {
         if (this.data.isMangerment) {
-          var currentStatu = "open";
-          this.util(currentStatu);
+          this.util("open");
         }
       }
     }
-    clearInterval(interval);
-    time = 0;
+    this.setData({
+      lastTapTime: curTime
+    });
+  },
+  openUserInfo() {
+    if (this.data.isMangerment) {
+      this.util("open");
+    }
   }
 });

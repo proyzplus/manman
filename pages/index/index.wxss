@@ -77,38 +77,48 @@
  }
 
  .today {
-   width: 90%;
+   width: 94%;
    height: auto;
    margin: auto;
-   margin-top: 12px;
+   margin-top: 4px;
    border-radius: 6px;
    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+ }
+
+ .header {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
  }
 
  .title {
-   color: #fff;
    font-weight: 600;
    color: #f44336;
    padding-left: 8px;
+   line-height: 72rpx;
  }
 
- .loveSang {
-   width: 90%;
+ .openImage {
+   width: 72rpx;
+   height: 72rpx;
+   vertical-align: middle;
+   margin-right: 12rpx;
+ }
+
+ .pageType {
+   width: 96%;
    margin: auto;
-   height: 40px;
-   margin-top: 16px;
+   /* margin-top: 12rpx; */
    display: flex;
    justify-content: space-between;
-   line-height: 40px;
  }
 
- .love {
-   width: 45%;
-   height: 40px;
+ .typeStyle {
+   width: 48%;
    border-radius: 6px;
-   text-align: center;
+   /* text-align: center; */
    color: #f44336;
-   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+   /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
  }
 
  .wordMain {
@@ -121,17 +131,15 @@
 
  /* 卡片 */
  .goods-container {
-   width: 100%;
+   width: 96%;
+   margin: auto;
    display: flex;
    justify-content: space-around;
-   /* flex-wrap: wrap;
-   box-sizing: content-box;
-   padding: 0 24rpx; */
-   margin-top: 24rpx;
+   margin-top: 12rpx;
  }
 
  .goodsSlide {
-   width: 48%;
+   width: 50%;
    height: auto;
  }
 
@@ -172,12 +180,6 @@
    font-size: 24rpx;
    padding: 12rpx 0rpx 0rpx 12rpx;
    color: rgba(114, 104, 104, 0.534);
-   /* margin-left: 24rpx; */
-   /* overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 4;
-   -webkit-box-orient: vertical; */
  }
 
  .bottom {

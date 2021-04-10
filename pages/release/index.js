@@ -26,65 +26,57 @@ Page({
     actile_img: "",
     userRealese: [],
     update: false,
-    acid: "",
-    islogin: true
+    userInfo: [],
+    acid: ""
   },
   onLoad: function (options) {
-    let that = this;
-    //获取用户在数据库的信息
+    if (options.id) {
+      this.update(options.id);
+      this.setData({
+        update: true,
+        acid: options.id
+      });
+    }
     wx.getStorage({
-      key: 'openId',
-      success: function (res) {
+      key: "openId",
+      success: (res) => {
         DB.where({
           _openid: res.data
         }).get({
-          success: function (res) {
-            that.setData({
-              userRealese: res.data[0]
-            });
-            console.log(that.data.userRealese, "用户的发布信息");
-            if (options.id) {
-              console.log(options.id, "不好意思，我过来修改内容的");
-              that.update(options.id);
-              that.setData({
-                update: true,
-                acid: options.id
+          success: userInfo => {
+            if (userInfo.data.length > 0) {
+              this.setData({
+                userInfo: userInfo.data[0],
               });
             }
           }
         });
-      },
-      fail(err) {
-        console.log("没有登陆");
-        that.setData({
-          islogin: false
-        })
       }
     });
+
   },
   // 过来修改
   update(id) {
-    let that = this;
-    let updateData = [];
-    for (let i = 0; i < that.data.userRealese.history_release.length; i++) {
-      if (id == that.data.userRealese.history_release[i]._id) {
-        updateData = that.data.userRealese.history_release[i];
+    DBT.doc(id).get({
+      success: res => {
+        this.setData({
+          title: res.data.title,
+          introduction: res.data.introduction,
+          actile_img: res.data.showImg,
+          pageData: {
+            content: res.data.content
+          }
+        });
       }
-    }
-    that.setData({
-      title: updateData.title,
-      introduction: updateData.introduction,
-      actile_img: updateData.showImg
     });
   },
   //上一步
   handToSence() {
-    let that = this;
     wx.showModal({
       title: '友情提示',
-      content: '返回上一步将清空文章内容，你可选择发布之后进行修改',
-      success: function () {
-        that.setData({
+      content: '返回上一步将清空文章内容',
+      success: res => {
+        this.setData({
           current: 0,
           verticalCurrent: 0
         });
@@ -118,28 +110,25 @@ Page({
   },
   //上传图片
   updateimg() {
-    let that = this;
-    if (that.data.update) {
-      that.setData({
+    if (this.data.update) {
+      this.setData({
         actile_img: ""
       });
     }
     wx.chooseImage({
       count: 1,
-      success(res) {
+      success: res => {
         wx.showLoading({
           title: '上传中...',
-        })
-        console.log(res, "图片上传");
+        });
         const tempFilePaths = res.tempFilePaths[0];
         const timeName = Date.parse(new Date()) / 1000;
         wx.cloud.uploadFile({
           cloudPath: timeName + ".png",
           filePath: tempFilePaths,
-          success: res => {
-            console.log(res, "图片存储");
-            that.setData({
-              actile_img: res.fileID
+          success: res1 => {
+            this.setData({
+              actile_img: res1.fileID
             });
             wx.hideLoading();
           }
@@ -171,60 +160,32 @@ Page({
     }
     return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
   },
-  // 显示结果
+  // 新增与修改
   clickShowText(e) {
-    let that = this;
-    that.setData({
-      nodes: that.data.content.html,
-      content_html: that.data.content.html
+    this.setData({
+      nodes: this.data.content.html,
+      content_html: this.data.content.html
     });
-    if (that.data.content.html) {
-      if (that.data.update) {
-        console.log("好了,过来修改吧!");
+    if (this.data.content.html) {
+      if (this.data.update) {
         //修改talking集合里面的这条数据
-        DBT.doc(that.data.acid).update({
+        DBT.doc(this.data.acid).update({
           data: {
-            title: that.data.title,
-            introduction: that.data.introduction,
-            showImg: that.data.actile_img,
-            content: that.data.nodes,
-            updateby: that.timi(new Date())
+            title: this.data.title,
+            introduction: this.data.introduction,
+            showImg: this.data.actile_img,
+            content: this.data.nodes,
+            updateby: this.timi(new Date())
           },
-          success(res) {
+          success: res => {
             console.log(res, "更新成功");
-            //更改用户发布历史的数据
-            let hisData = that.data.userRealese.history_release;
-            for (let i = 0; i < hisData.length; i++) {
-              if (that.data.acid == hisData[i]._id) {
-                hisData[i].content = that.data.nodes;
-                hisData[i].updateby = that.timi(new Date());
-                hisData[i].introduction = that.data.introduction;
-                hisData[i].title = that.data.title;
-                hisData[i].showImg = that.data.actile_img;
-              }
-            }
-            wx.getStorage({
-              key: 'openId',
-              success: function (re) {
-                DB.where({
-                  _openid: re.data
-                }).update({
-                  data: {
-                    history_release: hisData
-                  },
-                  success: function (r) {
-                    console.log(r, "用户历史更改成功!");
-                    wx.showToast({
-                      title: '更改成功',
-                      icon: 'success',
-                      duration: 2000
-                    });
-                    wx.reLaunch({
-                      url: '../../pages/index/index'
-                    });
-                  }
-                });
-              }
+            wx.showToast({
+              title: '更改成功',
+              icon: 'success',
+              duration: 2000
+            });
+            wx.reLaunch({
+              url: '../../pages/index/index'
             });
           }
         });
@@ -233,80 +194,63 @@ Page({
         DBT.add({
           data: {
             id: Date.parse(new Date()) / 1000,
-            title: that.data.title,
-            introduction: that.data.introduction,
-            showImg: that.data.actile_img,
-            content: that.data.nodes,
-            creatby: that.timi(new Date()),
-            updateby: that.timi(new Date()),
-            userInfo: that.data.userRealese
+            title: this.data.title,
+            introduction: this.data.introduction,
+            showImg: this.data.actile_img,
+            content: this.data.nodes,
+            commentList: [],
+            isDisplay: true,
+            watchList: [],
+            watchListId: [],
+            creatby: this.timi(new Date()),
+            updateby: this.timi(new Date()),
+            userInfo: {
+              _openid: this.data._openid,
+              avatarUrl: this.data.avatarUrl,
+              nickName: this.data.nickName
+            }
           },
-          success(res) {
+          success: res => {
             console.log(res, "添加成功");
-            //向用户的发布历史里面添加
-            that.addTalking(res._id);
+            wx.showToast({
+              title: '新增成功',
+              icon: 'success',
+              duration: 2000
+            });
+            wx.reLaunch({
+              url: '../../pages/index/index'
+            });
           }
         });
       }
     } else {
       wx.showToast({
         content: "你还没有写内容呢亲!"
-      })
+      });
     }
-  },
-  addTalking(_id) {
-    let that = this;
-    let his_realese = that.data.userRealese.history_release;
-    his_realese.push({
-      _id: _id,
-      title: that.data.title,
-      introduction: that.data.introduction,
-      showImg: that.data.actile_img,
-      content: that.data.nodes,
-      creatby: that.timi(new Date()),
-      updateby: that.timi(new Date())
-    });
-    DB.doc(that.data.userRealese._id).update({
-      data: {
-        history_release: his_realese
-      },
-      success(res) {
-        console.log(res, "更新成功");
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        });
-        wx.reLaunch({
-          url: '../../pages/index/index'
-        });
-      }
-    });
   },
   getEditorValue(e) {
     this.setData({
       content: e.detail
-    })
-    wx.setStorageSync("content", e.detail)
+    });
   },
   onEditorReady() {
-    const that = this
-    wx.createSelectorQuery().select('#editor').context(function (res) {
-      that.editorCtx = res.context;
+    wx.createSelectorQuery().select('#editor').context(res => {
+      this.editorCtx = res.context;
       wx.showLoading({
         title: '加载内容中...',
-      })
-      setTimeout(function () {
-        let data = that.data;
+      });
+      setTimeout(() => {
+        let data = this.data;
         wx.hideLoading();
-        that.editorCtx.setContents({
+        this.editorCtx.setContents({
           html: data.pageData ? data.pageData.content : '',
           success: (res) => {
-            console.log(res)
+            // console.log(res);
           }
-        })
-      }, 1000)
-    }).exec()
+        });
+      }, 1000);
+    }).exec();
   },
   insertDivider() {
     this.editorCtx.insertDivider({
@@ -319,43 +263,38 @@ Page({
     let {
       name,
       value
-    } = e.target.dataset
-    if (!name) return
-    this.editorCtx.format(name, value)
+    } = e.target.dataset;
+    if (!name) return;
+    this.editorCtx.format(name, value);
   },
   insertImage() {
-    var _this = this;
     wx.showLoading({
       title: '上传中...',
-    })
+    });
     wx.chooseImage({
       count: 1,
-      success(res) {
-        console.log(res, "图片上传")
+      success: res => {
         const tempFilePaths = res.tempFilePaths[0];
         const timeName = Date.parse(new Date()) / 1000;
-        //拿到图片路径上传到云储存
         wx.cloud.uploadFile({
           cloudPath: timeName + ".png",
           filePath: tempFilePaths,
-          success: res => {
-            console.log(res.fileID);
-            _this.editorCtx.insertImage({
-              src: res.fileID,
+          success: res1 => {
+            this.editorCtx.insertImage({
+              src: res1.fileID,
               data: {
                 id: 'abcd',
                 role: 'god'
               },
               success: function () {
-                console.log('insert image success')
                 wx.hideLoading();
               },
               fail: console.error
-            })
+            });
           },
           fail: console.error
         });
       }
-    })
+    });
   }
-})
+});

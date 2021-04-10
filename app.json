@@ -2,12 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/everyday/index",
-    "pages/loveCard/index", 
+    "pages/loveCard/index",
     "pages/mine_edit/index",
     "pages/mine_history/index",
     "pages/articleDetail/index",
     "pages/love/index",
-    "pages/photoList/index"
+    "pages/photoList/index",
+    "pages/mineSwiper/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

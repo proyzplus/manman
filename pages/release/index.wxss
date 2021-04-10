@@ -16,8 +16,8 @@
 }
 
 .toolbar {
-      position: fixed;
-      top: 80px;
+      /* position: fixed; */
+      /* top: 80px; */
       background-color: #fff;
       z-index: 9999;
       box-sizing: border-box;

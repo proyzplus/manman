@@ -1,0 +1,14 @@
+.image {
+      width: 480rpx;
+      height: 360rpx;
+      border: 1px solid lightgray;
+      border-radius: 8rpx;
+      padding: 8rpx;
+}
+
+button {
+      background-color: #fff;
+      color: #ff6900;
+      margin: 8rpx;
+      border: 1px solid #ff6900;
+}

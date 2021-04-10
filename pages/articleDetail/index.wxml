@@ -1,15 +1,29 @@
 <view class='product-content'>
       <import src="../../wxParse/wxParse.wxml" />
       <view class="wxParse">
-            <scroll-view style="height:auto;color:#fff;" scroll-y='true'>
+            <scroll-view style="height:auto;" scroll-y='true'>
+                  <view class="activeHeader">
+                        <view class="title">{{actileData.title}}</view>
+                        <view style="width:100%;height:2rpx;background:lightgray;"></view>
+                        <!-- <view >{{actileData.introduction}}</view> -->
+                  </view>
                   <view class="headtop">
                         <view style="display:flex;flex-wrap:wrap;">
                               <image class="userImg" src="{{userInfo.avatarUrl}}"></image>
                               <text class="userName">{{userInfo.nickName}}</text>
                         </view>
-                        <text class="time">发布于:{{creatby}}</text>
+                        <text class="time">记录于:{{creatby}}</text>
                   </view>
                   <template style="width: 100%;height: 100%;" is="wxParse" selectable="true" data="{{wxParseData:detail_content.nodes}}" />
+                  <view style="margin-bottom:64rpx;" wx:if="{{isLogin}}">
+                        <view class="comments">
+                              <input bindinput='dearInput' data-item="{{item}}" bindconfirm='commentDear' type="text" value="{{comment}}" placeholder="评论" />
+                        </view>
+                        <view style="line-height:48rpx;color:black;" wx:for="{{actileData.commentList}}">
+                              <text>{{item.nickName}}：</text>
+                              <text>{{item.comment}}</text>
+                        </view>
+                  </view>
             </scroll-view>
       </view>
 </view>

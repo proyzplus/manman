@@ -41,5 +41,9 @@
       <image class="listicon" src="../../images/userInfo/camera.png"></image>
       <text class="word">照片墙</text>
     </view>
+    <view class="iconfont" data-type="indexSwiper" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/Twisted.png"></image>
+      <text class="word">首页Swiper</text>
+    </view>
   </view>
 </view>

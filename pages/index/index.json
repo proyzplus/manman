@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "userInfo": "../../dist/userInfo/index"
+    "userInfo": "../../dist/userInfo/index",
+    "custom-swiper": "../../dist/customSwiper/index"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50

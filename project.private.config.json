@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/photoList/index",
-          "pathName": "pages/photoList/index",
+          "name": "pages/mineSwiper/index",
+          "pathName": "pages/mineSwiper/index",
           "scene": null
         }
       ]

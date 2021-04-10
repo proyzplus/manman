@@ -77,7 +77,7 @@ Component({
               }
               userInfo.openid = openid.result.openid;
               userInfo.autograph = "";
-              userInfo.history_release = [];
+              // userInfo.history_release = [];
               that.setData({
                 isLogin: true,
                 userInfo: userInfo
@@ -139,6 +139,11 @@ Component({
           break;
         case "updateImg":
           that.updateimg();
+          break;
+        case "indexSwiper":
+          wx.navigateTo({
+            url: '../../pages/mineSwiper/index',
+          });
           break;
       }
     },
