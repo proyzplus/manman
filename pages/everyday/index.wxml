@@ -40,7 +40,7 @@
                   <view style="font-size:24rpx;color:#fff;">想他{{activityList.man.total}}天</view>
             </view>
       </view>
-      <view wx:if="{{!sayLove}}" class="bottomMiddleHeaderView" bindtap="order_submit">
+      <view wx:if="{{!sayLove}}" class="bottomMiddleHeaderView" bindtap="before_order_submit">
             <view class="bottomMiddleHeaderItem" animation="{{animationMiddleHeaderItem}}">
                   <view class="bottomMiddleHeaderItemSubView">
                         <image src="../../images/everyLove/miss.png" animation="{{animationMiddleHeaderItem}}"></image>
@@ -52,5 +52,16 @@
             <button bindtap="getUserProfile">
                   <image src="../../images/everyLove/changeuser.png"></image>
             </button>
+      </view>
+</view>
+<view wx:if="{{userFeedbackHidden}}" class="popup_content">
+      <view class="popup-box">
+            <view class="popup_title">请输入你想对对方说的话</view>
+            <view class="popup_textarea_item">
+                  <textarea class="popup_textarea" placeholder='若不填写，将使用默认语言提示对方' bindinput="sayToLove"></textarea>
+            </view>
+            <view class="bottom-button">
+                  <view class="rightButton" bindtap="order_submit">确定</view>
+            </view>
       </view>
 </view>

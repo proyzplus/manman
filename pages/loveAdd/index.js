@@ -45,7 +45,7 @@ Page({
         userInfo: {
           _openid: that.data.userInfo._openid,
           avatarUrl: that.data.userInfo.avatarUrl,
-          nickName: that.data.userInfo.nickName,
+          nickName: that.data.userInfo.nickName
         },
         word: that.data.word,
         id: Number(that.data.total) + 1

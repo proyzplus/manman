@@ -11,13 +11,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "pages/mineSwiper/index",
-          "pathName": "pages/mineSwiper/index",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }

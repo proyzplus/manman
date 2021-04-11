@@ -24,7 +24,9 @@ Page({
     openId: "",
     isLady: false,
     sayLove: true,
-    isManager: false
+    isManager: false,
+    userFeedbackHidden: false,
+    userInfo: {}
   },
   onReady: function () {
     var circleCount = 0;
@@ -81,8 +83,15 @@ Page({
           key: 'openId',
           data: openid.result.openid
         });
-        this.setData({
-          openId: openid.result.openid
+        DBUSER.where({
+          _openid: openid.result.openid
+        }).get({
+          success: user => {
+            this.setData({
+              openId: openid.result.openid,
+              userInfo: user.data[0]
+            });
+          }
         });
         wx.cloud.callFunction({
           name: "everyLove",
@@ -129,6 +138,16 @@ Page({
   //     }
   //   })
   // },
+  before_order_submit() {
+    this.setData({
+      userFeedbackHidden: true
+    });
+  },
+  sayToLove(e) {
+    this.setData({
+      loveWord: e.detail.value
+    });
+  },
   order_submit() {
     let toUser = null;
     const {
@@ -156,14 +175,18 @@ Page({
       activityList,
       sayLove: true
     });
+    let nickName = openId == activityList.manOpenid ? "--袁太太" : "--老袁头";
     let message = {
-      act_title: "我好想你啊" + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"),
+      act_title: this.data.loveWord ? this.data.loveWord : ("我好想你啊" + nickName),
       // act_title: this.data.activityList.title + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"), // 活动标题
       act_continuous: act_continuous, // 连续签到天数
       act_total: act_total, // 累计签到天数
       act_phone: this.data.act_phone, // 设备ID
       act_time: this.data.act_time //签到日期 
     };
+    this.setData({
+      userFeedbackHidden: false
+    });
     wx.requestSubscribeMessage({
       tmplIds: ["r90Y49XshBdZetTGd69KmUMIEwZbtv3T96ARxW4rAdU"],
       success: res => {
@@ -182,7 +205,6 @@ Page({
                 icon: 'success',
                 duration: 2000,
               });
-
               this.updateActivity();
             })
             .catch(res => {
@@ -196,9 +218,6 @@ Page({
               });
             });
         }
-      },
-      fail: err => {
-        console.log(err)
       }
     });
   },
@@ -209,7 +228,6 @@ Page({
       success: (res) => {
         console.log(res, "获取用户信息 ");
         let userInfo = res.userInfo;
-        console.log(userInfo);
         let activityList = that.data.activityList;
         if (that.data.openId == activityList.manOpenid) {
           activityList.man.name = userInfo.nickName;
@@ -241,14 +259,26 @@ Page({
   },
   async updateActivity() {
     let activityList = this.data.activityList;
+    let updata = {
+      man: activityList.man,
+      woman: activityList.woman,
+      backImg: activityList.backImg
+    };
+    if (this.data.loveWord) {
+      let comment = {
+        _openid: this.data.userInfo._openid,
+        avatarUrl: this.data.userInfo.avatarUrl,
+        nickName: this.data.userInfo.nickName,
+        comment: this.data.loveWord,
+        creatby: new Date()
+      };
+      activityList.commentList = [...activityList.commentList, comment];
+      updata.commentList = activityList.commentList;
+    }
     DBAC.where({
       _id: "b00064a760651dfe0cc8b73b57ebea2b"
     }).update({
-      data: {
-        man: activityList.man,
-        woman: activityList.woman,
-        backImg: activityList.backImg
-      },
+      data: updata,
       success: res => {
         console.log(res);
       }
