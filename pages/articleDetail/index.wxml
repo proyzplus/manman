@@ -9,8 +9,8 @@
                   </view>
                   <view class="headtop">
                         <view style="display:flex;flex-wrap:wrap;">
-                              <image class="userImg" src="{{userInfo.avatarUrl}}"></image>
-                              <text class="userName">{{userInfo.nickName}}</text>
+                              <image class="userImg" src="{{actileData.userInfo.avatarUrl}}"></image>
+                              <text class="userName">{{actileData.userInfo.nickName}}</text>
                         </view>
                         <text class="time">记录于:{{creatby}}</text>
                   </view>

@@ -138,15 +138,24 @@ Page({
       url: "../../pages/articleDetail/index?id=" + e.currentTarget.dataset.id
     });
   },
-  love() {
-    wx.navigateTo({
-      url: "../../pages/love/index"
-    });
-  },
-  sang() {
-    wx.navigateTo({
-      url: "../../pages/photoList/index"
-    });
+  navPage(e) {
+    if (this.data.isMangerment) {
+      let type = e.currentTarget.dataset.type;
+      switch (type) {
+        case "moreLove":
+          wx.navigateTo({
+            url: "../../pages/love/index"
+          });
+          break;
+        case "memories":
+          wx.navigateTo({
+            url: "../../pages/photoList/index"
+          });
+          break;
+        default:
+          break;
+      }
+    }
   },
   powerDrawer: function (e) {
     this.util(e.currentTarget.dataset.statu);
@@ -197,6 +206,31 @@ Page({
   openUserInfo() {
     if (this.data.isMangerment) {
       this.util("open");
+    } else {
+      // wx.getUserProfile({
+      //   desc: '用于展示个人信息',
+      //   success: (res) => {
+      //     wx.showToast({
+      //       title: '恭喜你登录成功',
+      //       icon: 'success',
+      //       duration: 2000
+      //     });
+      //     let userInfo = res.userInfo;
+      //     wx.cloud.callFunction({
+      //       name: "talkingUserOpenId",
+      //       success(openid) {
+      //         userInfo.openid = openid.result.openid;
+      //         userInfo.autograph = "";
+      //         DB.add({
+      //           data: userInfo,
+      //           success(res) {
+      //             console.log(res, "获取用户信息成功，并保存云数据库");
+      //           }
+      //         });
+      //       }
+      //     });
+      //   }
+      // });
     }
   }
 });

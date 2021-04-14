@@ -11,7 +11,13 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/everyday/index",
+          "pathName": "pages/everyday/index",
+          "scene": null
+        }
+      ]
     }
   }
 }

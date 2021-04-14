@@ -6,11 +6,11 @@
   </view>
   <text class="wordMain">{{topic}}</text>
   <view class="pageType">
-    <view class="typeStyle" style="text-align:left;" bindtap="love">
+    <view class="typeStyle" style="text-align:left;" data-type="moreLove" bindtap="navPage">
       <image class="openImage" src="../../images/index/couples.png"></image>
       <text>行也思君</text>
     </view>
-    <view class="typeStyle" style="text-align:right;" bindtap="sang">
+    <view class="typeStyle" style="text-align:right;" data-type="memories" bindtap="navPage">
       <text>坐也思君</text>
       <image class="openImage" src="../../images/index/mergeMe.png"></image>
     </view>

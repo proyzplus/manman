@@ -23,8 +23,13 @@ Page({
         });
         var detail_content = res.data.content;
         WxParse.wxParse('detail_content', 'html', detail_content, this, 5);
+      }
+    });
+    wx.getStorage({
+      key: "openId",
+      success: (res) => {
         DB.where({
-          _openid: res.data._openid
+          _openid: res.data
         }).get({
           success: userInfo => {
             if (userInfo.data.length > 0) {
@@ -48,7 +53,7 @@ Page({
     return {
       title: this.data.actileData.title,
       imageUrl: this.data.actileData.showImg,
-      path: "/pages/detail/index?id=" + this.data.shareId
+      path: "/pages/articleDetail/index?id=" + this.data.shareId
     };
   },
   dearInput(e) {

@@ -169,7 +169,8 @@ Page({
         // console.log(res, "上传")
         wx.showLoading({
           title: '拼命上传中...',
-        })
+          mask: true
+        });
         for (let i = 0; i < res.tempFilePaths.length; i++) {
           const tempFilePaths = res.tempFilePaths[i];
           const timeName = String(Date.parse(new Date()) / 1000) + i;

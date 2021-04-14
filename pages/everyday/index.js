@@ -149,6 +149,10 @@ Page({
     });
   },
   order_submit() {
+    wx.showLoading({
+      title: "爱你爱你爱你",
+      mask: true
+    });
     let toUser = null;
     const {
       openId,
@@ -200,6 +204,7 @@ Page({
               },
             })
             .then(res => {
+              wx.hideLoading();
               wx.showToast({
                 title: '订阅成功',
                 icon: 'success',
@@ -208,6 +213,7 @@ Page({
               this.updateActivity();
             })
             .catch(res => {
+              wx.hideLoading();
               wx.showToast({
                 title: '订阅失败',
                 icon: 'success',
@@ -253,9 +259,8 @@ Page({
             that.updateActivity();
           }
         });
-
       }
-    })
+    });
   },
   async updateActivity() {
     let activityList = this.data.activityList;
@@ -291,6 +296,7 @@ Page({
       success: async res1 => {
         wx.showLoading({
           title: '拼命上传中...',
+          mask: true
         });
         const tempFilePaths = res1.tempFilePaths[0];
         const timeName = String(Date.parse(new Date()) / 1000);

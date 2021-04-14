@@ -120,6 +120,7 @@ Page({
       success: res => {
         wx.showLoading({
           title: '上传中...',
+          mask: true
         });
         const tempFilePaths = res.tempFilePaths[0];
         const timeName = Date.parse(new Date()) / 1000;
@@ -239,6 +240,7 @@ Page({
       this.editorCtx = res.context;
       wx.showLoading({
         title: '加载内容中...',
+        mask: true
       });
       setTimeout(() => {
         let data = this.data;
@@ -270,6 +272,7 @@ Page({
   insertImage() {
     wx.showLoading({
       title: '上传中...',
+      mask: true
     });
     wx.chooseImage({
       count: 1,

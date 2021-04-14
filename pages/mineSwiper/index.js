@@ -54,6 +54,7 @@ Page({
       success: async res => {
         wx.showLoading({
           title: '拼命上传中...',
+          mask: true
         });
         const tempFilePaths = res.tempFilePaths[0];
         const timeName = String(Date.parse(new Date()) / 1000);

@@ -1,19 +1,103 @@
-/* pages/loveAdd/index.wxss */
-
-.textarea-count {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-}
-
-.textarea-count textarea {
-      width: 100%;
-      background-color: #ffffff;
-}
-
 .handleClick {
-      width: 320rpx;
-      height: 92rpx;
-      border-radius: 8rpx;
-      background-color: aquamarine;
-      color: #ffffff;
+      width: 80%;
+      margin-top: 64rpx;
+      background-color: burlywood;
+      color: white;
+      border-radius: 98rpx;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+}
+
+.popup_content {
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+}
+
+.popup-box {
+      width: 70%;
+      background-color: #FFFFFF;
+      margin: auto;
+      position: fixed;
+      top: 32%;
+      left: 15%;
+      border-radius: 24rpx;
+}
+
+.popup_title {
+      width: 100%;
+      height: 100rpx;
+      text-align: center;
+      line-height: 100rpx;
+      font-size: 36rpx;
+      font-weight: 600;
+}
+
+.popup_textarea_item {
+      width: 96%;
+      margin: auto;
+      height: 200rpx;
+}
+
+.popup_textarea {
+      width: 100%;
+      height: 100%;
+}
+
+.bottom-button {
+      width: 100%;
+      height: 110rpx;
+      margin-top: 24rpx;
+      border-top: 1px solid #909399;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+}
+
+.leftButton {
+      width: 49.5%;
+      height: 110rpx;
+      font-size: 36rpx;
+      font-weight: 400;
+      color: black;
+      line-height: 50rpx;
+      letter-spacing: 2rpx;
+      line-height: 110rpx;
+}
+
+.rightButton {
+      width: 49.5%;
+      height: 110rpx;
+      border-left: 1px solid #909399;
+      font-size: 36rpx;
+      font-weight: 400;
+      color: #FF6900;
+      line-height: 50rpx;
+      letter-spacing: 2rpx;
+      line-height: 110rpx;
+}
+
+.view-contain-ti {
+      display: flex;
+      height: auto;
+      margin: 20px;
+      border: 3rpx solid #faca82;
+      border-radius: 10rpx;
+}
+
+.text-ti {
+      position: absolute;
+      font-size: 12px;
+      background: #fddcdc;
+      margin: -10px 0 0 10px;
+      padding: 0 5px;
+}
+
+.input1 {
+      margin: auto 10px;
 }

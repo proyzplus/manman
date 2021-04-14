@@ -114,7 +114,6 @@ Page({
     });
   },
   dearInput(e) {
-    console.log(e);
     this.setData({
       comment: e.detail.value,
       editItem: e.currentTarget.dataset.item
@@ -130,7 +129,12 @@ Page({
       nickName: this.data.userInfo.nickName,
       comment: this.data.comment
     };
-    let commentList = [commentLi, ...this.data.editItem.commentList];
+    let commentList = []
+    if (this.data.editItem.commentList) {
+      commentList = [commentLi, ...this.data.editItem.commentList];
+    } else {
+      commentList = [commentLi];
+    }
     DB.where({
       id: Number(this.data.editItem.id)
     }).update({
