@@ -1,6 +1,6 @@
-<view class="msc-mask-layer" style="background-image: url({{activityList.backImg}});background-position:-68px 0px;">
+<view class="msc-mask-layer"  style="background-image: url({{activityList.backImg}});background-position:-68px 0px;">
       <view style="margin-top:{{safeAreaHeader}}px;text-align:center;">Man Man</view>
-      <view class="userInfo" style="margin-top:24px;">
+      <view class="userInfo">
             <view class="userAvatar" wx:if="{{!isLady}}">
                   <image src="{{activityList.man.avatarUrl}}" alt="love"></image>
                   <view style="font-size:24rpx;color:#fff;">{{activityList.man.name}}</view>
@@ -44,6 +44,15 @@
             <view class="bottomMiddleHeaderItem" animation="{{animationMiddleHeaderItem}}">
                   <view class="bottomMiddleHeaderItemSubView">
                         <image src="../../images/everyLove/miss.png" animation="{{animationMiddleHeaderItem}}"></image>
+                  </view>
+            </view>
+      </view>
+      <view wx:else class="{{ show ? 'show' : '' }}">
+            <view class="upContent_container" style="position: fixed;top: {{safeAreaHeader + 150}}px;height:{{SweetHeight}}px">
+                  <view wx:for="{{commentList}}" class='danmu-li rowAndColCenter' style="top:{{ item.top }}%;border-radius: {{winHeight*0.18601*0.16}}px;font-size: {{winHeight*0.18601*0.12}}px; animation: dmAnimation {{item.time}}s linear {{ index*3 }}s infinite;">
+                        <image src="{{item.comment.avatarUrl}}" style="width:48rpx;height:48rpx;vertical-align:middle;"></image>
+                        <text style="margin-left:12rpx;">{{item.comment.nickName}}：</text>
+                        <text>{{item.comment.comment}}</text>
                   </view>
             </view>
       </view>

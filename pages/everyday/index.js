@@ -8,6 +8,7 @@
 const DBAC = wx.cloud.database().collection("activity");
 const DBUSER = wx.cloud.database().collection('userList');
 const dateTimePicker = require('../../utils/util.js');
+
 Page({
   data: {
     act_phone: "",
@@ -26,7 +27,12 @@ Page({
     sayLove: true,
     isManager: false,
     userFeedbackHidden: false,
-    userInfo: {}
+    userInfo: {},
+    winHeight: null,
+    SweetHeight: null,
+    show: false,
+    pageIsShow: false,
+    commentList: []
   },
   onReady: function () {
     var circleCount = 0;
@@ -72,7 +78,11 @@ Page({
         this.setData({
           safeAreaHeader: Number(res.safeArea.top) + 8,
           act_phone: res.model,
-          act_time: nowTime
+          act_time: nowTime,
+          winHeight: Number(res.safeArea.bottom)
+        });
+        this.setData({
+          SweetHeight: Number(this.data.winHeight) - Number(this.data.safeAreaHeader) - 280
         });
       }
     });
@@ -106,11 +116,38 @@ Page({
               isManager: true
             });
             if (act_data.data.length > 0) {
-              const activityData = act_data.data[0];
+              let activityData = act_data.data[0];
               this.setData({
                 activityList: activityData,
-                sayLove: act_data.isLady ? activityData.woman.sayLove : activityData.man.sayLove
+                sayLove: act_data.isLady ? activityData.woman.sayLove : activityData.man.sayLove,
+                show: true,
+                pageIsShow: true
               });
+              let newCommentist = [];
+              let commentList = activityData.commentList;
+              for (var i = 0; i < commentList.length; i++) {
+                const time = Math.floor(Math.random() * 10);
+                const _time = time < 6 ? 6 + i : time + i;
+                const top = Math.floor(Math.random() * 68) + 2;
+                newCommentist.push({
+                  comment: commentList[i],
+                  top: top,
+                  time: _time,
+                });
+              }
+              this.setData({
+                commentList: newCommentist
+              });
+              // setTimeout(() => {
+              //   setInterval(() => {
+              //     let commentList = this.data.commentList;
+              //     commentList.forEach(item => {
+              //       const top = Math.floor(Math.random() * 68) + 2;
+              //       item.top = top;
+              //     });
+              //     this.setData({ commentList });
+              //   }, 5000);
+              // }, 10000);
             } else {
               DBAC.doc("b00064a760651dfe0cc8b73b57ebea2b").get({
                 success: act3 => {
@@ -129,15 +166,18 @@ Page({
       }
     });
   },
-  // 获取access_token
-  // order_submit() {
-  //   wx.request({
-  //     url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2d3bd38e908ab0c2&secret=20e0696130355fef96653de8989bce26',
-  //     success: res => {
-  //       console.log(res)
-  //     }
-  //   })
-  // },
+  onShow: function () {
+    if (this.data.pageIsShow) {
+      this.setData({
+        show: true
+      });
+    }
+  },
+  onHide() {
+    this.setData({
+      show: false
+    });
+  },
   before_order_submit() {
     this.setData({
       userFeedbackHidden: true

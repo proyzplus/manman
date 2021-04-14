@@ -12,7 +12,9 @@
 
 .userInfo {
       width: 92%;
+      height: 105px;
       margin: auto;
+      padding-top: 20rpx;
       display: flex;
       justify-content: space-between;
 }
@@ -65,6 +67,7 @@ button::after {
 .bottomImg {
       width: 240rpx;
       height: 80rpx;
+      text-align: center;
       position: fixed;
       bottom: 48rpx;
       right: 0rpx;
@@ -139,4 +142,44 @@ button::after {
       line-height: 50rpx;
       letter-spacing: 2rpx;
       line-height: 110rpx;
+}
+
+.sweetBox {
+      width: 100%;
+      /* background-color: beige; */
+}
+
+.upContent_container {
+      width: 100%;
+      /* background: #fdfdfd; */
+      /* transform: translateY(300%); */
+      /* transition: all 2s ease; */
+      z-index: 12;
+      overflow: auto;
+}
+
+.show .upContent_container {
+      /* transform: translateY(0); */
+} 
+.danmu-li { 
+      padding: 0 20rpx;
+      color: #fff;
+      /* background-color: rgba(0, 0, 0, 0.5); */
+      position: absolute;
+      left: 100%;
+      top: 0;
+      word-break: keep-all;
+      white-space: nowrap;
+}
+
+/* 弹幕动画 */
+
+@keyframes dmAnimation {
+      from {
+            left: 100%;
+      }
+
+      to {
+            left: -100%;
+      }
 }
