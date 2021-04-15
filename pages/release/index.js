@@ -53,7 +53,6 @@ Page({
         });
       }
     });
-
   },
   // 过来修改
   update(id) {
@@ -69,43 +68,15 @@ Page({
         });
       }
     });
-  },
-  //上一步
-  handToSence() {
-    wx.showModal({
-      title: '友情提示',
-      content: '返回上一步将清空文章内容',
-      success: res => {
-        this.setData({
-          current: 0,
-          verticalCurrent: 0
-        });
-      }
-    });
-  },
-  //下一步
-  handleClick() {
-    if (this.data.title || this.data.introduction || this.data.actile_img) {
-      const addCurrent = this.data.current + 1;
-      const current = addCurrent > 1 ? 0 : addCurrent;
-      this.setData({
-        'current': current
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '请填写所有信息'
-      });
-    }
-  },
+  }, 
   titleEdit(e) {
     this.setData({
-      title: e.detail.detail.value
+      title: e.detail.value
     });
   },
   introEdit(e) {
     this.setData({
-      introduction: e.detail.detail.value
+      introduction: e.detail.value
     });
   },
   //上传图片
@@ -163,6 +134,24 @@ Page({
   },
   // 新增与修改
   clickShowText(e) {
+    if (!this.data.title) {
+      return wx.showToast({
+        icon: "error",
+        title: '请填写故事标题'
+      });
+    }
+    if (!this.data.introduction) {
+      return wx.showToast({
+        icon: "error",
+        title: '请填写故事短序'
+      });
+    }
+    if (!this.data.actile_img) {
+      return wx.showToast({
+        icon: "error",
+        title: '请上传首页图'
+      });
+    }
     this.setData({
       nodes: this.data.content.html,
       content_html: this.data.content.html
@@ -206,9 +195,9 @@ Page({
             creatby: this.timi(new Date()),
             updateby: this.timi(new Date()),
             userInfo: {
-              _openid: this.data._openid,
-              avatarUrl: this.data.avatarUrl,
-              nickName: this.data.nickName
+              _openid: this.data.userInfo._openid,
+              avatarUrl: this.data.userInfo.avatarUrl,
+              nickName: this.data.userInfo.nickName
             }
           },
           success: res => {
@@ -226,7 +215,8 @@ Page({
       }
     } else {
       wx.showToast({
-        content: "你还没有写内容呢亲!"
+        icon: "error",
+        title: "你还没有写内容呢亲!"
       });
     }
   },

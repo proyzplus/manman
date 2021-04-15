@@ -42,14 +42,43 @@
       color: #06c;
 }
 
-.basicInfo {
-      margin-top: 40px;
+.info_input {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      height: auto;
+}
+
+.info_text {
+      width: 140rpx;
+      font-size: 26rpx;
+      line-height: 96rpx;
+      color: gray;
+}
+
+input {
+      width: 76%;
+      border: 1px solid #f1f1f1;
+      border-radius: 8rpx;
+      margin-top: 24rpx;
+      font-size: 28rpx;
+}
+
+textarea {
+      width: 76%;
+      height: 200rpx !important;
+      overflow: auto;
+      border: 1px solid #f1f1f1;
+      border-radius: 8rpx;
+      margin-top: 24rpx;
+      font-size: 28rpx;
 }
 
 .updateImg {
       width: 92%;
       height: auto;
       margin: auto;
+      margin-top: 8rpx;
 }
 
 .actileImg {
@@ -61,22 +90,24 @@
 }
 
 .updaimg {
-      width: 140px;
-      height: 40px;
+      width: 280rpx;
+      line-height: 80rpx;
+      height: 80rpx;
       border-radius: 20px;
-      background-color: #19be6b;
-      color: #fff;
+      background-color: none !important;
+      color: #ff6900;
 }
 
 .actile_img {
-      width: 300px;
-      height: 300px;
+      width: 240rpx;
+      height: 240rpx;
       margin: auto;
-      text-align: center;
+      margin-top: 12rpx;
 }
 
 .my_img {
-      width: 300rpx;
+      width: 100%;
+      height: 100%;
 }
 
 .tosece {
