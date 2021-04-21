@@ -1,0 +1,58 @@
+<view class='container'>
+      <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                  <view class="weui-search-bar__box">
+                        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                        <input type="text" class="weui-search-bar__input" placeholder="打卡纪念名称" bindinput="bindKeyInput" />
+                  </view>
+            </view>
+            <view class="weui-search-bar__cancel-btn" bindtap="searchThing">搜索</view>
+      </view>
+      <view class='title'>
+            <view class='titleSel' bindtap='titleClick' data-idx='0'>
+                  <view style="{{0 == currentIndex ? 'color:#ff6900' : 'color:#fff'}}">
+                        <text>待打卡 ({{not_thingCount}})</text>
+                  </view>
+                  <hr class="{{0 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}}" />
+            </view>
+            <view class='titleSel' bindtap='titleClick' data-idx='1'>
+                  <view style="{{1 == currentIndex ? 'color:#ff6900' : 'color:#fff'}}">
+                        <text>已完成 ({{thingCount}})</text>
+                  </view>
+                  <hr class="{{1 == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}} " />
+            </view>
+      </view>
+      <swiper class='swiper' style="height:{{windowHeight}}px" bindchange='pagechange' current='{{currentIndex}}'>
+            <swiper-item class='swiper'>
+                  <view wx:for="{{not_thingList}}" class='recordItem' data-item="{{item}}" bindtap="ready_clock">
+                        <view class="goods-box">
+                              <view class="img-box">
+                                    <image src="{{item.img}}" class="image" mode="aspectFill"></image>
+                              </view>
+                              <view class="talkTitle">{{item.name}}</view>
+                        </view>
+                  </view>
+            </swiper-item>
+            <swiper-item class='swiper' class='swiper'>
+                  <view wx:for="{{thingList}}" class='recordItem'  data-id="{{item._id}}" bindtap="clockDeatil">
+                        <view class="goods-box">
+                              <view class="img-box">
+                                    <image src="{{item.img}}" class="image" mode="aspectFill"></image>
+                              </view>
+                              <view class="talkTitle">{{item.name}}</view>
+                        </view>
+                  </view>
+            </swiper-item>
+      </swiper>
+</view>
+<view wx:if="{{userFeedbackHidden}}" class="popup_content" bindtap="close">
+      <view class="popup-box">
+            <view class="bgImage">
+                  <image src="{{back_img}}" mode="aspectFill"></image>
+            </view>
+            <view class="thingName">{{thing_name}}</view>
+            <view class="otherInfo" style="padding-top: 160rpx;">{{nowTime}}</view>
+            <view class="otherInfo" style="padding-top: 24rpx;">{{address}}</view>
+      </view>
+      <button bindtap="doThisThing">打卡纪念</button>
+</view>

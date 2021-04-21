@@ -1,0 +1,44 @@
+.updateImg {
+      width: 92%;
+      height: auto;
+      margin: auto;
+      display: flex;
+      margin-bottom: 8rpx;
+}
+
+.actileRequired {
+      line-height: 28px;
+      color: red;
+}
+
+.actileImg {
+      text-align: left;
+      line-height: 30px;
+      font-size: 14px;
+      color: gray;
+}
+
+input {
+      border: 1px solid lightgray;
+      width: 70%;
+      border-radius: 8rpx;
+      height: 30px;
+      font-size: 28rpx;
+}
+
+.imgupdate {
+      line-height: 30px;
+      font-size: 14px;
+      color: lightblue;
+}
+
+.addStyle {
+      background-color: #fff;
+      border-radius: 8rpx;
+      border: 1px solid #ff6900;
+      color: #ff6900;
+      width: 180rpx;
+      height: 64rpx;
+      line-height: 64rpx;
+      font-size: 24rpx;
+}

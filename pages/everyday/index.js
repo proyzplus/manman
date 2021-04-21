@@ -2,7 +2,7 @@
  * @Author: proyzplus
  * @Date: 2021-03-31 15:36:05
  * @LastEditors: proyzplus
- * @LastEditTime: 2021-04-07 09:30:21
+ * @LastEditTime: 2021-04-20 15:29:02
  * @Description: Descriptio;
  */
 const DBAC = wx.cloud.database().collection("activity");
@@ -164,6 +164,11 @@ Page({
           }
         });
       }
+    });
+  },
+  mustDoThings() {
+    wx.navigateTo({
+      url: '../../pages/mustDoThings/index',
     });
   },
   onShow: function () {

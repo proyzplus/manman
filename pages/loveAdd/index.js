@@ -2,7 +2,7 @@
  * @Author: proyzplus
  * @Date: 2021-03-01 10:05:30
  * @LastEditors: proyzplus
- * @LastEditTime: 2021-04-12 16:58:37
+ * @LastEditTime: 2021-04-21 14:27:28
  * @Description: Description
  */
 const DB = wx.cloud.database().collection("userList");

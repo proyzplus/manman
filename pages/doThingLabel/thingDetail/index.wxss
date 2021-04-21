@@ -1,0 +1,33 @@
+.content-box {
+      width: 100%;
+}
+
+.address-info {
+      margin-top: 8rpx;
+}
+
+.address-info image {
+      width: 32rpx;
+      height: 32rpx;
+      vertical-align: middle;
+}
+
+.address-info text {
+
+      margin-left: 8rpx;
+}
+
+.thing-deatil {
+      width: 100%;
+}
+
+.detail-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      line-height: 64rpx;
+}
+.more{
+      font-size: 28rpx;
+      color: #ff6900;
+}

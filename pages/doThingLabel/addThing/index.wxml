@@ -1,0 +1,24 @@
+<view class="updateImg" style="display:flex;">
+      <text class="actileRequired">*</text>
+      <text class="actileImg">事情：</text>
+      <input class="weui-input" auto-focus placeholder="请输入要做的事情名称" value="{{name}}" bindinput="bindKeyName" />
+</view>
+<view class="updateImg">
+      <view style="display:flex;flex-wrap;wrap;">
+            <text class="actileRequired">*</text>
+            <text class="actileImg">图片：</text>
+            <view class="imgupdate" bindtap="updateimg">上传照片</view>
+      </view>
+</view>
+<image wx:if="{{img}}" style="width:180rpx;height:180rpx;display:block;margin:auto;" src="{{img}}"></image>
+<view class="updateImg" style="display:flex;">
+      <text class="actileRequired">*</text>
+      <text class="actileImg">Type：</text>
+      <radio-group bindchange="bandleChange" style="line-height:48rpx;">
+            <radio color="orange" value="true">Do</radio>
+            <radio style="margin-left:12px;" color="orange" value="false" checked="{{true}}">
+                  Not
+            </radio>
+      </radio-group>
+</view>
+<button class="addStyle" style="margin-top:34rpx;" bindtap="postServeList">新 增</button>

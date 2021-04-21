@@ -1,0 +1,23 @@
+<i-card title="{{doneThing.name}}" extra="{{doneThing.creatby}}" thumb="{{doneThing.img}}">
+      <view slot="content">
+            <view class="content-box">
+                  <view class="address-info" bindtap="navigation">
+                        <image src="../../../images/address.png"></image>
+                        <text>{{doneThing.address}}</text>
+                  </view>
+                  <view class="thing-deatil">
+                        <view class="detail-header">
+                              <view class="address-info">
+                                    <image src="../../../images/meri.png"></image>
+                                    <text>详情</text>
+                              </view>
+                              <view class="more" style="margin-top:8px;" bindtap="updateMore">
+                                    上传更多记忆
+                              </view>
+                        </view>
+                        <image mode="widthFix" wx:for="{{doneThing.detail}}" src="{{item}}" data-src="{{item}}" bindtap="seeImg"></image>
+                  </view>
+            </view>
+      </view>
+      <!-- <view slot="footer"></view> -->
+</i-card>

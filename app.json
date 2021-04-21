@@ -8,7 +8,8 @@
     "pages/articleDetail/index",
     "pages/love/index",
     "pages/photoList/index",
-    "pages/mineSwiper/index"
+    "pages/doThingLabel/addThing/index",
+    "pages/doThingLabel/thingDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -42,5 +43,11 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "夫人快告诉我你在哪里！"
+    }
+  }
+  
 }

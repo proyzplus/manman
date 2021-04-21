@@ -145,6 +145,11 @@ Component({
             url: '../../pages/mineSwiper/index',
           });
           break;
+        case "mustDoThing":
+          wx.navigateTo({
+            url: '../../pages/doThingLabel/addThing/index',
+          });
+          break;
       }
     },
     async updateimg() {

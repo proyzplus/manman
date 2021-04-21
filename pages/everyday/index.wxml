@@ -1,4 +1,4 @@
-<view class="msc-mask-layer"  style="background-image: url({{activityList.backImg}});background-position:-68px 0px;">
+<view class="msc-mask-layer" style="background-image: url({{activityList.backImg}});background-position:-68px 0px;">
       <view style="margin-top:{{safeAreaHeader}}px;text-align:center;">Man Man</view>
       <view class="userInfo">
             <view class="userAvatar" wx:if="{{!isLady}}">
@@ -61,6 +61,7 @@
             <button bindtap="getUserProfile">
                   <image src="../../images/everyLove/changeuser.png"></image>
             </button>
+            <image src="../../images/everyLove/moreLove.png" bindtap="mustDoThings"></image>
       </view>
 </view>
 <view wx:if="{{userFeedbackHidden}}" class="popup_content">
