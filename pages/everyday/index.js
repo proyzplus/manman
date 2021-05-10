@@ -67,7 +67,7 @@ Page({
         hour: datetime.slice(11, 13),
         minute: datetime.slice(14, 16),
         second: datetime.slice(17, 19)
-      })
+      });
     }, 1000);
   },
   onLoad: function (options) {
@@ -117,6 +117,7 @@ Page({
             });
             if (act_data.data.length > 0) {
               let activityData = act_data.data[0];
+              // activityData.commentList = activityData.commentList.reverse();
               this.setData({
                 activityList: activityData,
                 sayLove: act_data.isLady ? activityData.woman.sayLove : activityData.man.sayLove,
@@ -135,23 +136,10 @@ Page({
                   time: _time,
                 });
               }
-              this.setData({
-                commentList: newCommentist
-              });
-              // setTimeout(() => {
-              //   setInterval(() => {
-              //     let commentList = this.data.commentList;
-              //     commentList.forEach(item => {
-              //       const top = Math.floor(Math.random() * 68) + 2;
-              //       item.top = top;
-              //     });
-              //     this.setData({ commentList });
-              //   }, 5000);
-              // }, 10000);
+              this.sortCommentList(newCommentist);
             } else {
               DBAC.doc("b00064a760651dfe0cc8b73b57ebea2b").get({
                 success: act3 => {
-                  console.log("陌生进来");
                   this.setData({
                     activityList: act3.data,
                     isLady: false,
@@ -164,6 +152,15 @@ Page({
           }
         });
       }
+    });
+  },
+  sortCommentList(val) {
+    let newCommentist = val;
+    newCommentist.sort(function (a, b) {
+      return Number(b.comment.id) - Number(a.comment.id);
+    });
+    this.setData({
+      commentList: newCommentist
     });
   },
   mustDoThings() {
@@ -193,13 +190,13 @@ Page({
       loveWord: e.detail.value
     });
   },
-  order_submit() {
+  async order_submit() {
     wx.showLoading({
       title: "爱你爱你爱你",
       mask: true
     });
     let toUser = null;
-    const {
+    let {
       openId,
       activityList
     } = this.data;
@@ -220,14 +217,37 @@ Page({
       activityList.woman.total = act_total;
       activityList.woman.sayLove = true;
     }
+    if (this.data.loveWord) {
+      let comment = {
+        _openid: this.data.userInfo._openid,
+        avatarUrl: this.data.userInfo.avatarUrl,
+        nickName: this.data.userInfo.nickName,
+        comment: this.data.loveWord,
+        creatby: new Date(),
+        id: Date.parse(new Date())
+      };
+      activityList.commentList = [comment, ...activityList.commentList];
+      let newCommentist = [];
+      let commentList = activityList.commentList;
+      for (var i = 0; i < commentList.length; i++) {
+        const time = Math.floor(Math.random() * 10);
+        const _time = time < 6 ? 6 + i : time + i;
+        const top = Math.floor(Math.random() * 68) + 2;
+        newCommentist.push({
+          comment: commentList[i],
+          top: top,
+          time: _time,
+        });
+      }
+      await this.sortCommentList(newCommentist);
+    }
     this.setData({
-      activityList,
+      activityList: activityList,
       sayLove: true
     });
     let nickName = openId == activityList.manOpenid ? "--袁太太" : "--老袁头";
     let message = {
-      act_title: this.data.loveWord ? this.data.loveWord : ("我好想你啊" + nickName),
-      // act_title: this.data.activityList.title + (openId == activityList.manOpenid ? "--袁太太" : "--老袁头"), // 活动标题
+      act_title: this.data.loveWord ? this.data.loveWord : ("我好想你啊" + nickName),  // 活动标题
       act_continuous: act_continuous, // 连续签到天数
       act_total: act_total, // 累计签到天数
       act_phone: this.data.act_phone, // 设备ID
@@ -251,7 +271,7 @@ Page({
             .then(res => {
               wx.hideLoading();
               wx.showToast({
-                title: '订阅成功',
+                title: '爱你哟(＾Ｕ＾)ノ~ＹＯ',
                 icon: 'success',
                 duration: 2000,
               });
@@ -260,7 +280,7 @@ Page({
             .catch(res => {
               wx.hideLoading();
               wx.showToast({
-                title: '订阅失败',
+                title: 'error:fail-fail！',
                 icon: 'success',
                 duration: 2000,
               });
@@ -272,6 +292,7 @@ Page({
       }
     });
   },
+  // 更新我们的微信信息
   getUserProfile(e) {
     let that = this;
     wx.getUserProfile({
@@ -284,13 +305,13 @@ Page({
           activityList.man.name = userInfo.nickName;
           activityList.man.avatarUrl = userInfo.avatarUrl;
           this.setData({
-            activityList
+            activityList: activityList
           });
         } else {
           activityList.woman.name = userInfo.nickName;
           activityList.woman.avatarUrl = userInfo.avatarUrl;
           this.setData({
-            activityList
+            activityList: activityList
           });
         }
         DBUSER.where({
@@ -312,19 +333,20 @@ Page({
     let updata = {
       man: activityList.man,
       woman: activityList.woman,
-      backImg: activityList.backImg
+      backImg: activityList.backImg,
+      commentList: activityList.commentList
     };
-    if (this.data.loveWord) {
-      let comment = {
-        _openid: this.data.userInfo._openid,
-        avatarUrl: this.data.userInfo.avatarUrl,
-        nickName: this.data.userInfo.nickName,
-        comment: this.data.loveWord,
-        creatby: new Date()
-      };
-      activityList.commentList = [...activityList.commentList, comment];
-      updata.commentList = activityList.commentList;
-    }
+    // if (this.data.loveWord) {
+    //   let comment = {
+    //     _openid: this.data.userInfo._openid,
+    //     avatarUrl: this.data.userInfo.avatarUrl,
+    //     nickName: this.data.userInfo.nickName,
+    //     comment: this.data.loveWord,
+    //     creatby: new Date()
+    //   };
+    //   activityList.commentList = [...activityList.commentList, comment];
+    //   updata.commentList = activityList.commentList;
+    // }
     DBAC.where({
       _id: "b00064a760651dfe0cc8b73b57ebea2b"
     }).update({

@@ -60,6 +60,11 @@ Page({
       }
     });
   },
+  onHide: function (e) {
+    this.setData({
+      showModalStatus: false
+    });
+  },
   // 查看是否为管理
   isManger() {
     let data = {

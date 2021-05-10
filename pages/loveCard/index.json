@@ -1,6 +1,5 @@
 {
   "usingComponents": {},
-  "disableScroll": true,
   "enablePullDownRefresh": true,
-  "onReachBottomDistance": 50
+  "onReachBottomDistance": 150
 }

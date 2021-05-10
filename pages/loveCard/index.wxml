@@ -1,10 +1,16 @@
 <view class="cardListStyle">
-      <scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
-            <view class="type-card" wx:for="{{cardList}}" wx:key="id" id='{{item.id}}' bindtap="managerCard" style="margin-bottom:16rpx;">
-                  <view class="type-back" style="background-image: url('{{item.back}}')">
-                        <text class="content-name">{{item.word}}</text>
-                        <text class="content-time">{{item.lastMitune}}</text>
-                  </view>
+      <view class="card-tabar" wx:for="{{cardList}}" wx:key="id" id='{{item.id}}' bindtap="managerCard" >
+            <view class="card-back">
+                  <image src="{{item.back}}" mode="aspectFill"></image>
             </view>
-      </scroll-view>
+            <view class="card-word">{{item.word}}</view>
+            <view class="timeNow">
+                  <view class="line"></view>
+                  <image src="../../images/time.png" style="width:56rpx;height:56rpx;vertical-align: middle;"></image>
+                  <view class="line"></view>
+            </view>
+            <view class="lastMitune">{{item.lastMitune}}</view>
+            <view class="border-mitune">{{item.last_dateTime}}</view>
+            <view style="width:100%;height:16rpx;"></view>
+      </view>
 </view>

@@ -2,7 +2,7 @@
  * @Author: proyzplus
  * @Date: 2021-04-08 15:05:09
  * @LastEditors: proyzplus
- * @LastEditTime: 2021-04-08 16:59:47
+ * @LastEditTime: 2021-05-10 09:39:57
  * @Description: Description
 -->
 # 慢慢家
@@ -24,3 +24,5 @@
       也是从那个时候起 薛之谦 变成我人生中第一个偶像 
       因为他的歌给我带来了很大的力量 让我可以继续前进
       谢谢你让我从新做回了小孩
+      
+# 五月三号谢谢你带我去见了他

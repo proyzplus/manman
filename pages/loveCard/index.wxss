@@ -1,48 +1,72 @@
 .cardListStyle {
       width: 100%;
       height: 100%;
-      overflow: auto;
 }
 
-.type-card {
-      width: 92%;
-      height: 420rpx;
-      margin: auto;
+.card-tabar {
+      width: 96%;
       border-radius: 8rpx;
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-      padding: 16rpx;
-      margin-top: 4px;
+      margin: auto;
+      margin-bottom: 12rpx;
+      background-color: #fff;
+      /* background: linear-gradient(269deg, rgba(208, 230, 13, 0.6) 50%, #FFA200, #ff6900); */
 }
 
-.type-back {
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      text-align: center;
-      float: left;
+.card-back {
       width: 100%;
-      height: 420rpx;
-}
-
-.type-content {
-      position: absolute;
-      left: 20rpx;
-      right: 20rpx;
+      margin: auto;
       text-align: center;
-      color: #ffffff;
 }
 
-.content-name {
-      position: relative;
-      top: 108rpx;
-      color: #ffffff;
-      font-size: 52rpx;
-      display: block;
+.card-back image {
+      width: 96%;
+      height: 380rpx;
+      margin: 12rpx;
+      margin-bottom: 0rpx;
+      border-radius: 8rpx;
 }
 
-.content-time {
-      display: block;
-      color: #ffffff;
-      position: relative;
-      top: 168rpx;
-      font-size: 68rpx;
+.card-word {
+      width: 100%;
+      text-align: center;
+      color: #ff6900;
+      font-weight: 600;
+      flex-flow: row;
+      letter-spacing: 4rpx;
+      line-height: 80rpx;
+      font-size: 32rpx;
+}
+
+.timeNow {
+      width: 80%;
+      margin: auto;
+      height: 56rpx;
+      display: flex;
+      justify-content: space-between;
+}
+
+.line {
+      width: 40%;
+      height: 2rpx;
+      background-color: crimson;
+      margin-top: 28rpx;
+}
+
+.lastMitune {
+      width: 100%;
+      text-align: center;
+      line-height: 68rpx;
+      color: gray;
+      letter-spacing: 3rpx;
+}
+
+.border-mitune {
+      width: 448rpx;
+      height: 48rpx;
+      line-height: 48rpx;
+      margin: auto;
+      border: 1px solid #fb9306;
+      border-radius: 8rpx;
+      text-align: center;
+      letter-spacing: 2rpx; 
 }

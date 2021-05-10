@@ -220,22 +220,33 @@ Page({
     let message = {
       done_time: this.data.nowTime,
       done_address: this.data.address,
-      done_name: "老袁和小胡",
+      done_name: "老袁的小胡和小胡的老袁",
       done_desc: this.data.clock_item.name + "--打卡完成！"
     };
     wx.requestSubscribeMessage({
       tmplIds: ["oojBTy-6-cBvDol2M-Q6nEGl4xdn6g4XiR2A4i__b6c"],
-      success: res => {
+      success: async res => {
         if (res.errMsg === 'requestSubscribeMessage:ok') {
-          wx.cloud
-            .callFunction({
+          let timer = null;
+          let count = 0;
+          let userList = ["o_BMd5ERRE6PLi2dS08lm89tiMgU", "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM"];
+          for (let i = 0; i < userList.length; i++) {
+            await wx.cloud.callFunction({
               name: 'markDone',
-              data: {
-                message: message
-              },
-            })
-            .then(res1 => {
+              data: { openId: userList[i], message: message },
+            }).then(res1 => {
+              if (res1.result.errCode !== 0) {
+                wx.showToast({
+                  title: "Love",
+                  mask: false
+                });
+              }
+              count = count * 1 + 1;
               console.log(res1);
+            });
+          }
+          timer = setInterval(() => {
+            if (count == 2) {
               wx.hideLoading();
               wx.showToast({
                 title: '订阅成功',
@@ -243,7 +254,9 @@ Page({
                 duration: 2000,
               });
               this.handleClick();
-            });
+              clearInterval(timer);
+            }
+          }, 500);
         }
       }
     });

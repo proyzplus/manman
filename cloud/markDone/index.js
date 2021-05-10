@@ -8,25 +8,7 @@ cloud.init({
 exports.main = async (event, context) => {
   try {
     const result = await cloud.openapi.subscribeMessage.send({
-      touser: "o_BMd5ERRE6PLi2dS08lm89tiMgU",
-      page: 'pages/mustDoThings/index',
-      data: {
-        time5: {
-          value: event.message.done_time
-        },
-        thing6: {
-          value: event.message.done_address
-        },
-        thing4: {
-          value: event.message.done_name
-        },
-        thing2: {
-          value: event.message.done_desc
-        }
-      },
-      templateId: 'oojBTy-6-cBvDol2M-Q6nEGl4xdn6g4XiR2A4i__b6c'
-    }, {
-      touser: "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM",
+      touser: event.openId,
       page: 'pages/mustDoThings/index',
       data: {
         time5: {

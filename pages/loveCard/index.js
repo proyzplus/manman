@@ -7,6 +7,7 @@
  */
 const DB = wx.cloud.database().collection('userList');
 const DBCARD = wx.cloud.database().collection("cardList");
+const dateTimePicker = require('../../utils/util.js');
 Page({
   data: {
     cardList: [],
@@ -74,6 +75,21 @@ Page({
     wx.showNavigationBarLoading(); //在标题栏中显示加载 
     await this.getCountLoading();
   },
+  // 上滑加载
+  onReachBottom() {
+    if (this.goodCount !== 0) {
+      if (Number(this.data.goodRow) + 1 < Number(this.data.goodCount)) {
+        this.setData({
+          goodRow: Number(this.data.goodRow) + 1
+        });
+        this.getCardList();
+      } else {
+        console.log("list与总数已经相等，没有数据可加载了");
+      }
+    } else {
+      console.log("数为0");
+    }
+  },
   async getCardList() {
     wx.cloud.callFunction({
       name: "talkingUserOpenId",
@@ -92,6 +108,10 @@ Page({
         let cardList = [...this.data.cardList, ...res.result.data];
         this.data.timer = setInterval(() => {
           for (let i = 0; i < cardList.length; i++) {
+            cardList[i].last_dateTime = cardList[i].dateTime;
+            if (cardList[i].last_dateTime.indexOf("周") == -1) {
+              cardList[i].last_dateTime = cardList[i].dateTime + " " + (dateTimePicker.dateLater(cardList[i].dateTime.replace(/-/g, "/"))).week;
+            }
             cardList[i].lastMitune = this.countTime(cardList[i].dateTime);
           }
           this.setData({

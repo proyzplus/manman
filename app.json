@@ -7,9 +7,7 @@
     "pages/mine_history/index",
     "pages/articleDetail/index",
     "pages/love/index",
-    "pages/photoList/index",
-    "pages/doThingLabel/addThing/index",
-    "pages/doThingLabel/thingDetail/index"
+    "pages/photoList/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

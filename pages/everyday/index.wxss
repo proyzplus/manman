@@ -155,7 +155,7 @@ button::after {
       /* transform: translateY(300%); */
       /* transition: all 2s ease; */
       z-index: 12;
-      overflow: auto;
+      /* overflow: auto; */
 }
 
 .show .upContent_container {
