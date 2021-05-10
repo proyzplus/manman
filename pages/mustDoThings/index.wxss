@@ -152,12 +152,8 @@
 .popup-box {
   width: 600rpx;
   height: 600rpx;
-  /* background-color: #FFFFFF; */
   margin: auto;
   margin-top: 32%;
-  /* position: fixed;
-  top: 32%;
-  left: 15%; */
   border-radius: 24rpx;
 }
 
@@ -166,8 +162,6 @@
   height: 600rpx;
   width: 600rpx;
   z-index: -1;
-  /* opacity: 0.5;
-  overflow: hidden; */
 }
 
 .bgImage>image {
@@ -210,4 +204,33 @@ button {
   color: steelblue;
   letter-spacing: 4rpx;
   margin-top: 24rpx;
+}
+
+.us_do_thing {
+  width: 480rpx;
+  height: 72rpx;
+  margin: auto;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: space-around;
+  animation: tiaodong .8s linear infinite;
+}
+
+@keyframes tiaodong {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.us_do_thing image {
+  width: 240rpx;
+  height: 240rpx;
 }

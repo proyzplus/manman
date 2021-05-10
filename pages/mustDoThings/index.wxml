@@ -34,7 +34,7 @@
                   </view>
             </swiper-item>
             <swiper-item class='swiper' class='swiper'>
-                  <view wx:for="{{thingList}}" class='recordItem'  data-id="{{item._id}}" bindtap="clockDeatil">
+                  <view wx:for="{{thingList}}" class='recordItem' data-id="{{item._id}}" bindtap="clockDeatil">
                         <view class="goods-box">
                               <view class="img-box">
                                     <image src="{{item.img}}" class="image" mode="aspectFill"></image>
@@ -52,7 +52,11 @@
             </view>
             <view class="thingName">{{thing_name}}</view>
             <view class="otherInfo" style="padding-top: 160rpx;">{{nowTime}}</view>
-            <view class="otherInfo" style="padding-top: 24rpx;">{{address}}</view>
+            <button bindtap="choseAddress">获取位置</button>
+            <view class="otherInfo" wx:if="{{address}}">{{address}}</view>
       </view>
-      <button bindtap="doThisThing">打卡纪念</button>
+      <view class="us_do_thing">
+            <button wx:if="{{!use_type}}" bindtap="doThisThing">打卡纪念</button>
+            <button wx:else open-type='share' formType="submit">喊Ta打卡</button>
+      </view>
 </view>

@@ -19,7 +19,10 @@ Page({
     row: 0,
     count: 0,
     userFeedbackHidden: false,
-    clock_item: {}
+    clock_item: {},
+    userOpenId: null,
+    use_type: null,
+    card_add: ""
   },
   onLoad: function (options) {
     wx.getSystemInfo({
@@ -29,7 +32,24 @@ Page({
         });
       }
     });
-    this.getLocation();
+    wx.getStorage({
+      key: "openId",
+      success: (res) => {
+        this.setData({
+          userOpenId: res.data
+        });
+      }
+    });
+    if (options._id) {
+      DBTHING.where({
+        _id: options._id
+      }).get({
+        success: res => {
+          console.log(res);
+          this.click_label(res.data[0]);
+        }
+      });
+    }
     this.loading();
   },
   pagechange: function (e) {
@@ -42,7 +62,9 @@ Page({
         type: !this.data.type,
         key: ""
       });
-      this.loading();
+      setTimeout(() => {
+        this.loading();
+      }, 200);
     }
   },
   titleClick: function (e) {
@@ -56,36 +78,31 @@ Page({
   },
   // 获取当前位置信息
   async getLocation() {
-    await wx.getLocation({
-      type: 'wgs84',
-      success: async res => {
-        const latitude = res.latitude;
-        const longitude = res.longitude;
-        await wx.request({
-          url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + "," + longitude,
-          data: {
-            key: "TDZBZ-3RP6X-OJ44C-TE3FP-YMSZJ-FDBUL"
-          },
-          header: { 'content-type': 'application/json' },
-          method: 'GET',
-          dataType: 'json',
-          responseType: 'text',
-          success: result => {
-            this.setData({
-              latitude,
-              longitude,
-              address: result.data.result.address
-            });
-          }
-        });
-      }
-    });
+    // await wx.getLocation({
+    //   type: 'wgs84',
+    //   success: async res => {
+    //     const latitude = res.latitude;
+    //     const longitude = res.longitude;
+    //     await wx.request({
+    //       url: 'https://apis.map.qq.com/ws/geocoder/v1/?location=' + latitude + "," + longitude,
+    //       data: {
+    //         key: "TDZBZ-3RP6X-OJ44C-TE3FP-YMSZJ-FDBUL"
+    //       },
+    //       header: { 'content-type': 'application/json' },
+    //       method: 'GET',
+    //       dataType: 'json',
+    //       responseType: 'text',
+    //       success: result => {
+    //         this.setData({
+    //           latitude,
+    //           longitude,
+    //           address: result.data.result.address
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
   },
-  // 下拉刷新
-  // async onPullDownRefresh() {
-  //   wx.showNavigationBarLoading(); //在标题栏中显示加载 
-  //   await this.loading();
-  // },
   // 上滑加载
   onReachBottom() {
     if (this.goodCount !== 0) {
@@ -193,14 +210,36 @@ Page({
   },
   ready_clock(e) {
     let item = e.currentTarget.dataset.item;
+    this.click_label(item);
+  },
+  click_label(item) {
     const time = dateTimePicker.formatTime();
     const nowTime = time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日 " + time.slice(11, 13) + ":" + time.slice(14, 16);
+    let use_type = null;
+    if (this.data.userOpenId == "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM") {
+      if (item.man_use) {
+        use_type = true;
+      } else {
+        use_type = false;
+      }
+    } else {
+      if (item.woman_use) {
+        use_type = true;
+      } else {
+        use_type = false;
+      }
+    }
     this.setData({
       thing_name: item.name,
       back_img: item.img,
       nowTime: nowTime,
       clock_item: item,
-      userFeedbackHidden: true
+      userFeedbackHidden: true,
+      use_type: use_type,
+      card_add: item.card_add,
+      address: item.address,
+      latitude: item.latitude,
+      longitude: item.longitude
     });
   },
   close(e) {
@@ -213,13 +252,16 @@ Page({
   },
   // 打卡纪念
   doThisThing() {
+    if (!this.data.address) {
+      return;
+    }
     wx.showLoading({
       title: "爱你爱你爱你",
       mask: true
     });
     let message = {
       done_time: this.data.nowTime,
-      done_address: this.data.address,
+      done_address: this.data.card_add,
       done_name: "老袁的小胡和小胡的老袁",
       done_desc: this.data.clock_item.name + "--打卡完成！"
     };
@@ -227,49 +269,54 @@ Page({
       tmplIds: ["oojBTy-6-cBvDol2M-Q6nEGl4xdn6g4XiR2A4i__b6c"],
       success: async res => {
         if (res.errMsg === 'requestSubscribeMessage:ok') {
-          let timer = null;
-          let count = 0;
-          let userList = ["o_BMd5ERRE6PLi2dS08lm89tiMgU", "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM"];
-          for (let i = 0; i < userList.length; i++) {
-            await wx.cloud.callFunction({
-              name: 'markDone',
-              data: { openId: userList[i], message: message },
-            }).then(res1 => {
-              if (res1.result.errCode !== 0) {
-                wx.showToast({
-                  title: "Love",
-                  mask: false
-                });
-              }
-              count = count * 1 + 1;
-              console.log(res1);
+          await wx.cloud.callFunction({
+            name: 'markDone',
+            data: {
+              openId: this.data.userOpenId,
+              message: message
+            },
+          }).then(res1 => {
+            wx.showToast({
+              title: '打卡成功',
+              icon: 'success',
+              duration: 2000,
             });
-          }
-          timer = setInterval(() => {
-            if (count == 2) {
-              wx.hideLoading();
-              wx.showToast({
-                title: '订阅成功',
-                icon: 'success',
-                duration: 2000,
-              });
-              this.handleClick();
-              clearInterval(timer);
-            }
-          }, 500);
+            this.handleClick();
+          });
         }
       }
     });
   },
+  // 更改数据
   handleClick() {
+    let type = null;
+    let man_use = false;
+    let woman_use = false;
+    if (this.data.userOpenId == "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM") {
+      man_use = true;
+      if (this.data.clock_item.woman_use) {
+        type = true;
+      } else {
+        type = false;
+      }
+    } else {
+      woman_use = false;
+      if (this.data.clock_item.man_use) {
+        type = true;
+      } else {
+        type = false;
+      }
+    }
     DBTHING.doc(this.data.clock_item._id).update({
       data: {
-        type: true,
+        type: type,
+        card_add: this.data.card_add,
         address: this.data.address,
         creatby: this.data.nowTime,
-        clockCount: 1,
         latitude: this.data.latitude,
-        longitude: this.data.longitude
+        longitude: this.data.longitude,
+        man_use: man_use,
+        woman_use: woman_use
       },
       success: res => {
         wx.showToast({
@@ -287,5 +334,46 @@ Page({
     wx.navigateTo({
       url: '../../pages/doThingLabel/thingDetail/index?id=' + e.currentTarget.dataset.id,
     });
+  },
+  choseAddress() {
+    wx.getSetting({
+      success: res => {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success: () => {
+              wx.chooseLocation({
+                success: add => {
+                  this.setData({
+                    address: add.address + add.name,
+                    card_add: add.name,
+                    latitude: add.latitude,
+                    longitude: add.longitude
+                  });
+                }
+              });
+            }
+          });
+        } else {
+          wx.chooseLocation({
+            success: add => {
+              this.setData({
+                address: add.address + add.name,
+                card_add: add.name,
+                latitude: add.latitude,
+                longitude: add.longitude
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.clock_item.name,
+      imageUrl: this.data.clock_item.img,
+      path: "/pages/mustDoThings/index?_id=" + this.data.clock_item._id
+    };
   }
 });

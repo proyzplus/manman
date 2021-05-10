@@ -59,9 +59,10 @@ Page({
       creatby: "",
       detail: [],
       id: Date.parse(new Date()) / 1000,
-      clockCount: this.data.type == true ? 1 : 0,
       latitude: "",
-      longitude: ""
+      longitude: "",
+      man_use: this.data.type ? true : false,
+      woman_use: this.data.type ? true : false
     };
     DBTHING.add({
       data, success(res) {

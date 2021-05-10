@@ -2,7 +2,7 @@
  * @Author: proyzplus
  * @Date: 2021-03-01 10:05:30
  * @LastEditors: proyzplus
- * @LastEditTime: 2021-04-21 14:27:28
+ * @LastEditTime: 2021-05-10 13:48:05
  * @Description: Description
  */
 const DB = wx.cloud.database().collection("userList");
@@ -122,62 +122,63 @@ Page({
     if (!this.data.word) {
       return false;
     }
-    wx.showLoading({
-      title: "爱你爱你爱你",
-      mask: true
-    });
-    let toUser = null;
-    let mes_send_name = null;
-    let mes_receive_name = null;
-    const { openId } = this.data;
-    if (openId == "o_BMd5ERRE6PLi2dS08lm89tiMgU") {
-      toUser = "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM";
-      mes_send_name = "老袁的老婆" + "(" + this.data.userInfo.nickName + ")";
-      mes_receive_name = "老袁" + "(" + this.data.other_user.nickName + ")";
-    } else {
-      toUser = "o_BMd5ERRE6PLi2dS08lm89tiMgU";
-      mes_send_name = "小胡的老公" + "(" + this.data.userInfo.nickName + ")";
-      mes_receive_name = "小胡" + "(" + this.data.other_user.nickName + ")";
-    }
-    let message = {
-      mes_send_name: mes_send_name,
-      mes_content: this.data.word,
-      mes_receive_name: mes_receive_name,
-      mes_time: this.data.mes_ime
-    };
-    wx.requestSubscribeMessage({
-      tmplIds: ["8C-6eWdT1Izc1MsRy40iFDIX0kxeSGhCE4SANaOfuos"],
-      success: res => {
-        if (res.errMsg === 'requestSubscribeMessage:ok') {
-          wx.cloud
-            .callFunction({
-              name: 'messagUnread',
-              data: {
-                openid: toUser,
-                message: message
-              },
-            })
-            .then(res1 => {
-              console.log(res1, "res1");
-              wx.hideLoading();
-              wx.showToast({
-                title: '订阅成功',
-                icon: 'success',
-                duration: 2000,
-              });
-              this.handleClick();
-            })
-            .catch(res => {
-              wx.hideLoading();
-              wx.showToast({
-                title: '订阅失败',
-                icon: 'success',
-                duration: 2000,
-              });
-            });
-        }
-      }
-    });
+    this.handleClick();
+    // wx.showLoading({
+    //   title: "爱你爱你爱你",
+    //   mask: true
+    // });
+    // let toUser = null;
+    // let mes_send_name = null;
+    // let mes_receive_name = null;
+    // const { openId } = this.data;
+    // if (openId == "o_BMd5ERRE6PLi2dS08lm89tiMgU") {
+    //   toUser = "o_BMd5IPJeXtDy4h-_rzTR-Kn2zM";
+    //   mes_send_name = "老袁的老婆" + "(" + this.data.userInfo.nickName + ")";
+    //   mes_receive_name = "老袁" + "(" + this.data.other_user.nickName + ")";
+    // } else {
+    //   toUser = "o_BMd5ERRE6PLi2dS08lm89tiMgU";
+    //   mes_send_name = "小胡的老公" + "(" + this.data.userInfo.nickName + ")";
+    //   mes_receive_name = "小胡" + "(" + this.data.other_user.nickName + ")";
+    // }
+    // let message = {
+    //   mes_send_name: mes_send_name,
+    //   mes_content: this.data.word,
+    //   mes_receive_name: mes_receive_name,
+    //   mes_time: this.data.mes_ime
+    // };
+    // wx.requestSubscribeMessage({
+    //   tmplIds: ["8C-6eWdT1Izc1MsRy40iFDIX0kxeSGhCE4SANaOfuos"],
+    //   success: res => {
+    //     if (res.errMsg === 'requestSubscribeMessage:ok') {
+    //       wx.cloud
+    //         .callFunction({
+    //           name: 'messagUnread',
+    //           data: {
+    //             openid: toUser,
+    //             message: message
+    //           },
+    //         })
+    //         .then(res1 => {
+    //           console.log(res1, "res1");
+    //           wx.hideLoading();
+    //           wx.showToast({
+    //             title: '订阅成功',
+    //             icon: 'success',
+    //             duration: 2000,
+    //           });
+    //           this.handleClick();
+    //         })
+    //         .catch(res => {
+    //           wx.hideLoading();
+    //           wx.showToast({
+    //             title: '订阅失败',
+    //             icon: 'success',
+    //             duration: 2000,
+    //           });
+    //         });
+    //     }
+    //   }
+    // });
   },
   timi(date) {
     let year = date.getFullYear();

@@ -61,7 +61,8 @@
             <button bindtap="getUserProfile">
                   <image src="../../images/everyLove/changeuser.png"></image>
             </button>
-            <image src="../../images/everyLove/moreLove.png" bindtap="mustDoThings"></image>
+            <image src="../../images/everyLove/must_thing.png" bindtap="mustDoThings"></image>
+            <image src="../../images/everyLove/Notes.png" bindtap="mustDoThings"></image>
       </view>
 </view>
 <view wx:if="{{userFeedbackHidden}}" class="popup_content">
