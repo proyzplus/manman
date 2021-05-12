@@ -83,20 +83,18 @@ Page({
   },
   async loading() {
     wx.showLoading({
-      title: "袁太太等一下",
-      mask: true
+      title: "袁太太等一下"
     });
-    let that = this
     wx.cloud.database().collection("talkingBucket").count({
-      success(tal) {
+      success: tal => {
         const countResult = tal.total;
         const batchTimes = Math.ceil(countResult / 10);
-        that.setData({
+        this.setData({
           goodRow: 0,
           goodCount: batchTimes,
           commodList: []
         });
-        that.getMoreTalking();
+        this.getMoreTalking();
       }
     });
   },

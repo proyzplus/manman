@@ -45,8 +45,9 @@ Page({
         _id: options._id
       }).get({
         success: res => {
-          console.log(res);
-          this.click_label(res.data[0]);
+          if (!res.data[0].type) {
+            this.click_label(res.data[0]);
+          }
         }
       });
     }
@@ -202,9 +203,11 @@ Page({
             not_thingList: this.data.not_thingList.concat(res.result.data)
           });
         }
-        wx.hideLoading();
-        wx.hideNavigationBarLoading();
-        wx.stopPullDownRefresh();
+        setTimeout(() => {
+          wx.hideLoading();
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+        }, 200);
       }
     });
   },
@@ -300,7 +303,7 @@ Page({
         type = false;
       }
     } else {
-      woman_use = false;
+      woman_use = true;
       if (this.data.clock_item.man_use) {
         type = true;
       } else {
