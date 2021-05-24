@@ -57,12 +57,16 @@
             </view>
       </view>
       <view wx:if="{{isManager}}" class="bottomImg">
+            <view class="tab_list" bindtap="newReLaunch">
+                  <image src="../../images/everyLove/changeuser.png"></image>
+                  <view class="tab_word">从新进入</view>
+            </view>
             <view class="tab_list" bindtap="updateimg">
                   <image src="../../images/everyLove/changeimg.png"></image>
                   <view class="tab_word">更换背景</view>
             </view>
-            <button class="tab_list" bindtap="getUserProfile">
-                  <image src="../../images/everyLove/changeuser.png"></image>
+            <button class="tab_list" bindtap="getUserProfile" style="background:#fff;">
+                  <image src="../../images/everyLove/update_page.png"></image>
                   <view class="tab_word" style="margin-top:-30rpx;">更新信息</view>
             </button>
             <view class="tab_list" bindtap="mustDoThings">

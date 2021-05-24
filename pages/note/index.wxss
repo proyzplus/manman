@@ -24,7 +24,6 @@ page {
       border-bottom: 1px solid lightgray;
       font-size: 32rpx;
       line-height: 32rpx;
-      color: #ff6900;
       padding-top: 8rpx;
       padding-bottom: 8rpx;
 }

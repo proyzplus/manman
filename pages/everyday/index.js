@@ -8,7 +8,7 @@
 const DBAC = wx.cloud.database().collection("activity");
 const DBUSER = wx.cloud.database().collection('userList');
 const dateTimePicker = require('../../utils/util.js');
-
+const time = dateTimePicker.formatTime();
 Page({
   data: {
     act_phone: "",
@@ -71,7 +71,6 @@ Page({
     }, 1000);
   },
   onLoad: function (options) {
-    const time = dateTimePicker.formatTime();
     const nowTime = time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日 " + time.slice(11, 13) + ":" + time.slice(14, 16);
     wx.getSystemInfo({
       success: res => {
@@ -117,7 +116,6 @@ Page({
             });
             if (act_data.data.length > 0) {
               let activityData = act_data.data[0];
-              // activityData.commentList = activityData.commentList.reverse();
               this.setData({
                 activityList: activityData,
                 sayLove: act_data.isLady ? activityData.woman.sayLove : activityData.man.sayLove,
@@ -152,6 +150,11 @@ Page({
           }
         });
       }
+    });
+  },
+  newReLaunch() {
+    wx.reLaunch({
+      url: "../everyday/index"
     });
   },
   sortCommentList(val) {
@@ -336,17 +339,6 @@ Page({
       backImg: activityList.backImg,
       commentList: activityList.commentList
     };
-    // if (this.data.loveWord) {
-    //   let comment = {
-    //     _openid: this.data.userInfo._openid,
-    //     avatarUrl: this.data.userInfo.avatarUrl,
-    //     nickName: this.data.userInfo.nickName,
-    //     comment: this.data.loveWord,
-    //     creatby: new Date()
-    //   };
-    //   activityList.commentList = [...activityList.commentList, comment];
-    //   updata.commentList = activityList.commentList;
-    // }
     DBAC.where({
       _id: "b00064a760651dfe0cc8b73b57ebea2b"
     }).update({

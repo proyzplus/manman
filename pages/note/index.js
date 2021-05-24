@@ -18,6 +18,9 @@ Page({
     isShowConfirm: false
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: "私人笔记"
+    });
     wx.getStorage({
       key: "openId",
       success: (res) => {
@@ -106,9 +109,9 @@ Page({
       },
       success: res => {
         let noteList = res.result.data;
-        // noteList.forEach(item => {
-        //   item.time = this.timi(new Date(item.creatby));
-        // });
+        noteList.forEach(item => {
+          item.color = '#' + (Math.random() * 0xffffff << 0).toString(16);
+        });
         this.setData({
           noteList: this.data.noteList.concat(noteList)
         });

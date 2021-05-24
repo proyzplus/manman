@@ -1,6 +1,6 @@
 <view class="noteList" wx:for="{{noteList}}">
       <view bindtouchstart='touchStart' bindtouchend='touchEnd' data-id="{{item._id}}" bindtap='pressTap'>
-            <view class="note">{{item.content}}</view>
+            <view class="note" style="color:{{item.color}}">{{index + 1}}、{{item.content}}</view>
             <view class="time">{{item.time}}</view>
       </view>
 </view>

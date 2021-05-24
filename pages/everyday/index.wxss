@@ -65,22 +65,25 @@ button::after {
 }
 
 .bottomImg {
-      width: 100%;
+      width: 90%;
       height: 120rpx;
+      background-color: #fff;
+      border-radius: 56rpx;
       position: fixed;
+      left: 5%;
       bottom: 24rpx;
       display: flex;
       justify-content: space-around;
+      opacity: 0.8;
 }
 
 .tab_list {
-      width: 22%;
+      width: auto;
       height: 120rpx;
-      background-color: #fff;
       border-radius: 8rpx;
       text-align: center;
       margin: 0;
-      opacity: 0.8;
+      /* opacity: 0.8; */
 }
 
 .tab_word {
