@@ -1,0 +1,39 @@
+<view class="user_info">
+      <view class="man_info">
+            <image src="{{man.avatarUrl}}"></image>
+      </view>
+      <view class="woman_info">
+            <image src="{{woman.avatarUrl}}"></image>
+      </view>
+</view>
+<view class='weui-cell-third'>
+      <block wx:for="{{everydayList}}" wx:key="*this">
+            <view class='weui-cell-list'>
+                  <view class='weui-cell-circle'></view>
+                  <view class='weui-cell-line'>
+                        <view class="nullBox"></view>
+                        <view class="yh_photos">
+                              <view class="time">{{item.time}}</view>
+                              <view class="photo">
+                                    <view class="update_photo">
+                                          <image wx:if="{{item.man.photo}}" class="rePhoto" data-src="{{item.man.photo}}" bindtap="seeImg" src="{{item.man.photo}}" mode="aspectFill"></image>
+                                          <image wx:if="{{!item.man.photo&&isMan}}" class="updatephoto" data-id="{{item.id}}" data-user="man" bindtap="updateimg" src="../../images/update_photo.png"></image>
+                                          <image wx:if="{{!item.man.photo&&!isMan}}" class="updatephoto" src="../../images/update_photo.png"></image>
+                                          <view wx:if="{{item.man.address}}" class="address">
+                                                {{item.man.address}}
+                                          </view>
+                                    </view>
+                                    <view class="update_photo">
+                                          <image wx:if="{{item.woman.photo}}" class="rePhoto" data-src="{{item.woman.photo}}" bindtap="seeImg" src="{{item.woman.photo}}" mode="aspectFill"></image>
+                                          <image wx:if="{{!item.woman.photo&&isWoman}}" class="updatephoto" data-id="{{item.id}}" data-user="woman" bindtap="updateimg" src="../../images/update_photo.png"></image>
+                                          <image wx:if="{{!item.woman.photo&&!isWoman}}" class="updatephoto" src="../../images/update_photo.png"></image>
+                                          <view wx:if="{{item.woman.address}}" class="address">
+                                                {{item.woman.address}}
+                                          </view>
+                                    </view>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+      </block>
+</view>

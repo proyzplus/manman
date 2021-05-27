@@ -7,6 +7,7 @@
  */
 const DB = wx.cloud.database().collection('userList');
 const DBCARD = wx.cloud.database().collection("cardList");
+const DBAC = wx.cloud.database().collection("activity");
 const dateTimePicker = require('../../utils/util.js');
 Page({
   data: {
@@ -31,24 +32,11 @@ Page({
     //   title: "爱的旅途"
     // });
     this.getCountLoading();
-    wx.getStorage({
-      key: "openId",
-      success: (res) => {
-        this.isManger(res.data);
-      }
-    });
-  },
-  // 查看是否为管理
-  isManger(val) {
-    DB.where({
-      _openid: val
-    }).get({
-      success: userInfo => {
-        if (userInfo.data.length > 0) {
-          this.setData({
-            isMangerment: true
-          });
-        }
+    DBAC.doc("cbddf0af60a1cbbd090d1be410d4c616").get({
+      success: res => {
+        this.setData({
+          isMangerment: res.data.config
+        });
       }
     });
   },

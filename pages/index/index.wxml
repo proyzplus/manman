@@ -1,20 +1,21 @@
-<custom-swiper imgUrls="{{imgUrls}}"></custom-swiper>
 <view class="today">
   <view class="header">
     <text class="title" data-time="{{lastTapTime}}" bindtap="doubleClick">慢慢 Home</text>
     <image class="openImage" src="../../images/index/openInfo.png" bindtap="openUserInfo"></image>
   </view>
+  <custom-swiper imgUrls="{{imgUrls}}"></custom-swiper>
   <text class="wordMain">{{topic}}</text>
-  <view class="pageType">
-    <view class="typeStyle" style="text-align:left;" data-type="moreLove" bindtap="navPage">
-      <image class="openImage" src="../../images/index/couples.png"></image>
-      <text>行也思君</text>
-    </view>
-    <view class="typeStyle" style="text-align:right;" data-type="memories" bindtap="navPage">
-      <text>坐也思君</text>
-      <image class="openImage" src="../../images/index/mergeMe.png"></image>
-    </view>
+</view>
+<view class="function_label" wx:if="{{classList.length>0 && isMangerment}}">
+  <view class="function" wx:for="{{classList}}" wx:key="id" data-id="{{item.id}}" bindtap="navPage">
+    <image src="{{item.icon}}"></image>
+    <text>{{item.name}}</text>
   </view>
+</view>
+<view class="view_fengexian">
+  <view></view>
+  <text class="text_fengexian">* 纪念我们的故事 *</text>
+  <view></view>
 </view>
 <view class="goods-container" wx:if="{{commodList.length>0}}">
   <view class="goodsSlide">

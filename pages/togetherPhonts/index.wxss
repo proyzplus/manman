@@ -1,0 +1,120 @@
+ .user_info {
+       width: 100%;
+       height: 720rpx;
+       background-image: url('https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/other/cup_ql.png?sign=8eabc40087fccb68f0c07c7a677f0950&t=1622082171');
+       background-size: 100% 100%;
+       background-repeat: no-repeat;
+       display: flex;
+ }
+
+ .man_info {
+       width: 150rpx;
+       height: 150rpx;
+       margin-left: 97rpx;
+       margin-top: 232rpx;
+ }
+
+ .man_info image {
+       width: 100%;
+       height: 100%;
+       border-radius: 50%;
+ }
+
+ .woman_info {
+       width: 150rpx;
+       height: 150rpx;
+       margin-left: 258rpx;
+       margin-top: 188rpx;
+ }
+
+ .woman_info image {
+       width: 100%;
+       height: 100%;
+       border-radius: 50%;
+ }
+
+ .weui-cell-third {
+       margin-bottom: 48rpx;
+ }
+
+ .weui-cell-list {
+       width: 96%;
+       height: auto;
+       margin: auto;
+ }
+
+ .weui-cell-circle {
+       border: 2rpx solid #ff6900;
+       border-radius: 12rpx;
+       width: 20rpx;
+       height: 20rpx;
+ }
+
+ .weui-cell-line {
+       width: 100%;
+       height: auto;
+       border-left: 1px solid #fff;
+       margin-left: 10rpx;
+       display: flex;
+       flex-wrap: wrap;
+ }
+
+ .nullBox {
+       width: 20px;
+       height: auto;
+ }
+
+ .yh_photos {
+       width: 640rpx;
+       height: auto;
+ }
+
+ .time {
+       font-size: 24rpx;
+       color: gray;
+ }
+
+ .photo {
+       width: 100%;
+       display: flex;
+       height: 240rpx;
+       border: 1px solid lightgray;
+       justify-content: space-between;
+       border-radius: 8rpx;
+ }
+
+ .update_photo {
+       width: 46%;
+       height: 208rpx;
+       margin: 16rpx;
+       text-align: center;
+ }
+
+ .updatephoto {
+       width: 160rpx;
+       height: 160rpx;
+ }
+
+ .rePhoto {
+       width: 100%;
+       height: 180rpx;
+ }
+
+ .address {
+       width: 100%;
+       font-size: 24rpx;
+       color: gray;
+ }
+
+ .release {
+       width: 100rpx;
+       height: 100rpx;
+       position: fixed;
+       bottom: 6%;
+       left: calc(50% - 50rpx);
+ }
+
+ .release image {
+       width: 100%;
+       height: 100%;
+ }

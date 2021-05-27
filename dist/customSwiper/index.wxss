@@ -15,9 +15,9 @@
   align-items: flex-start;
   overflow: unset;
   width: 550rpx;
-  height: 450rpx;
-  padding-top: 70rpx;
-  padding-bottom: 20rpx;
+  height: auto;
+  padding-top: 52rpx;
+  /* padding-bottom: 20rpx; */
   box-sizing: border-box;
 }
 
@@ -27,7 +27,7 @@
   border-radius: 10rpx;
   margin: 0rpx 50rpx;
   z-index: 1;
-  box-shadow: 10rpx 5px 40rpx rgba(0, 0, 0, 0.5);
+  /* box-shadow: 10rpx 5px 40rpx rgba(0, 0, 0, 0.5); */
 }
 
 .active {

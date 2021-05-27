@@ -4,7 +4,7 @@ var app = getApp();
 Page({
   data: {
     userInfo: {},
-    topic: "我希望有个如你一般的人，如山间清爽的风，如古城温暖的光。从清晨到傍晚，由山野到书房。只要最后是你，就好！",
+    topic: "",
     openid: '',
     goodCount: 0,
     goodRow: 0,
@@ -14,20 +14,14 @@ Page({
     safeWidth: 0,
     isMangerment: false,
     lastTapTime: 0,
-    imgUrls: []
+    imgUrls: [],
+    classList: []
   },
   onLoad: function (e) {
     wx.getSystemInfo({
       success: res => {
         this.setData({
           safeWidth: (Number(res.safeArea.width) / 2) + 50
-        });
-      }
-    });
-    DBAC.get({
-      success: res => {
-        this.setData({
-          imgUrls: res.data[1].swiperList
         });
       }
     });
@@ -42,7 +36,6 @@ Page({
         this.setData({
           openid: res.result.openid
         });
-        this.isManger();
         if (res.result.openid == 'o_BMd5ERRE6PLi2dS08lm89tiMgU') {
           wx.showModal({
             title: "欢迎夫人来到‘慢慢Home’",
@@ -65,23 +58,17 @@ Page({
       showModalStatus: false
     });
   },
-  // 查看是否为管理
-  isManger() {
-    let data = {
-      _openid: this.data.openid
-    };
-    DB.where(data).get({
-      success: userInfo => {
-        console.log(userInfo, "用户在数据库有没有数据");
-        if (userInfo.data.length > 0) {
-          this.setData({
-            isMangerment: true
-          });
-        }
+  async loading() {
+    DBAC.get({
+      success: res => {
+        this.setData({
+          imgUrls: res.data[1].swiperList,
+          isMangerment: res.data[2].config,
+          classList: res.data[3].classList,
+          topic: res.data[3].topic
+        });
       }
     });
-  },
-  async loading() {
     wx.showLoading({
       title: "袁太太等一下"
     });
@@ -142,22 +129,27 @@ Page({
     });
   },
   navPage(e) {
-    if (this.data.isMangerment) {
-      let type = e.currentTarget.dataset.type;
-      switch (type) {
-        case "moreLove":
-          wx.navigateTo({
-            url: "../../pages/love/index"
-          });
-          break;
-        case "memories":
-          wx.navigateTo({
-            url: "../../pages/photoList/index"
-          });
-          break;
-        default:
-          break;
-      }
+    let id = e.currentTarget.dataset.id;
+    if (Number(id) == 1001001) {
+      wx.navigateTo({
+        url: "../../pages/love/index"
+      });
+    } else if (Number(id) == 1001002) {
+      wx.navigateTo({
+        url: "../../pages/photoList/index"
+      });
+    } else if (Number(id) == 1001003) {
+      wx.navigateTo({
+        url: '../../pages/mustDoThings/index'
+      });
+    } else if (Number(id) == 1001004) {
+      wx.navigateTo({
+        url: '../../pages/note/index'
+      });
+    } else if (Number(id) == 1001005) {
+      wx.navigateTo({
+        url: "../../pages/togetherPhonts/index"
+      });
     }
   },
   powerDrawer: function (e) {
@@ -209,31 +201,6 @@ Page({
   openUserInfo() {
     if (this.data.isMangerment) {
       this.util("open");
-    } else {
-      // wx.getUserProfile({
-      //   desc: '用于展示个人信息',
-      //   success: (res) => {
-      //     wx.showToast({
-      //       title: '恭喜你登录成功',
-      //       icon: 'success',
-      //       duration: 2000
-      //     });
-      //     let userInfo = res.userInfo;
-      //     wx.cloud.callFunction({
-      //       name: "talkingUserOpenId",
-      //       success(openid) {
-      //         userInfo.openid = openid.result.openid;
-      //         userInfo.autograph = "";
-      //         DB.add({
-      //           data: userInfo,
-      //           success(res) {
-      //             console.log(res, "获取用户信息成功，并保存云数据库");
-      //           }
-      //         });
-      //       }
-      //     });
-      //   }
-      // });
     }
   }
 });

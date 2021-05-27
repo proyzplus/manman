@@ -69,14 +69,6 @@
                   <image src="../../images/everyLove/update_page.png"></image>
                   <view class="tab_word" style="margin-top:-30rpx;">更新信息</view>
             </button>
-            <view class="tab_list" bindtap="mustDoThings">
-                  <image src="../../images/everyLove/must_thing.png"></image>
-                  <view class="tab_word">一起打卡</view>
-            </view>
-            <view class="tab_list" bindtap="watchNote">
-                  <image src="../../images/everyLove/Notes.png"></image>
-                  <view class="tab_word">便签笔记</view>
-            </view>
       </view>
 </view>
 <view wx:if="{{userFeedbackHidden}}" class="popup_content">

@@ -166,11 +166,6 @@ Page({
       commentList: newCommentist
     });
   },
-  mustDoThings() {
-    wx.navigateTo({
-      url: '../../pages/mustDoThings/index',
-    });
-  },
   onShow: function () {
     if (this.data.pageIsShow) {
       this.setData({
@@ -384,11 +379,6 @@ Page({
           }
         });
       }
-    });
-  },
-  watchNote() {
-    wx.navigateTo({
-      url: '../../pages/note/index',
     });
   }
 });
