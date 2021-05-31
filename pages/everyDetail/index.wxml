@@ -1,0 +1,41 @@
+<view class='all'> 
+      <view class="week">
+            <view class="week_every" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">
+                  {{item}}
+            </view>
+      </view>
+      <view class='days' bindtouchstart='touchStart' bindtouchmove='touchMove' bindtouchend='touchEnd'>
+            <view class="columns" wx:for="{{days.length/7}}" wx:for-index="i" wx:key="i">
+                  <view wx:for="{{days}}" wx:for-index="j" wx:key="j">
+                        <view class="rows" wx:if="{{j/7 == i}}">
+                              <view class="rows" wx:for="{{7}}" wx:for-index="k" wx:key="k">
+                                    <view class='cell' wx:if="{{days[j+k].date == null}}">
+                                          <text decode="{{true}}">&nbsp;&nbsp;</text>
+                                    </view>
+                                    <view class='cell' wx:else>
+                                          <view wx:if="{{days[j+k].isSign == true}}" class='sign_cell'>
+                                                <!-- <text>{{days[j+k].date}}</text> -->
+                                                <image class="heart" src="../../images/things/sign_heart.png"></image>
+                                          </view>
+                                          <view wx:else class="normal_cell">
+                                                <!-- <text>{{days[j+k].date}}</text> -->
+                                                <image class="heart" src="../../images/things/normal_heart.png"></image>
+                                          </view>
+                                    </view>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+      </view>
+      <view class='count'>
+            <text>虽然坚持不一定有结果，但一定有意义</text>
+            <view class='daynumber'>
+                  <text class='number'>{{user.total}}</text>
+                  <text class='day'>天</text>
+            </view>
+            <text>写尽千山，落笔是你；</text>
+            <text>望尽星辰，美丽是你；</text>
+            <text>书尽泛黄，扉页是你；</text>
+            <text>千山万水，归处是你。</text>
+      </view>
+</view>

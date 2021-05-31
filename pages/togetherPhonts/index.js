@@ -33,7 +33,7 @@ Page({
         }
         if (res.data == "o_BMd5ERRE6PLi2dS08lm89tiMgU") {
           this.setData({
-            isMan: true
+            isWoman: true
           });
         }
         this.setData({
@@ -188,6 +188,13 @@ Page({
     wx.previewImage({
       current: e.currentTarget.dataset.src,
       urls: [e.currentTarget.dataset.src]
+    });
+  },
+  openLocation(e){
+    wx.openLocation({
+      latitude: e.currentTarget.dataset.latitude,
+      longitude: e.currentTarget.dataset.longitude,
+      scale: 14
     });
   }
 });

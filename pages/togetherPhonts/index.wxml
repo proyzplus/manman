@@ -16,18 +16,32 @@
                               <view class="time">{{item.time}}</view>
                               <view class="photo">
                                     <view class="update_photo">
-                                          <image wx:if="{{item.man.photo}}" class="rePhoto" data-src="{{item.man.photo}}" bindtap="seeImg" src="{{item.man.photo}}" mode="aspectFill"></image>
-                                          <image wx:if="{{!item.man.photo&&isMan}}" class="updatephoto" data-id="{{item.id}}" data-user="man" bindtap="updateimg" src="../../images/update_photo.png"></image>
-                                          <image wx:if="{{!item.man.photo&&!isMan}}" class="updatephoto" src="../../images/update_photo.png"></image>
-                                          <view wx:if="{{item.man.address}}" class="address">
+                                          <image wx:if="{{item.man.photo}}" class="rePhoto"
+                                                data-src="{{item.man.photo}}" bindtap="seeImg" src="{{item.man.photo}}"
+                                                mode="aspectFill"></image>
+                                          <image wx:if="{{!item.man.photo&&isMan}}" class="updatephoto"
+                                                data-id="{{item.id}}" data-user="man" bindtap="updateimg"
+                                                src="../../images/update_photo.png"></image>
+                                          <image wx:if="{{!item.man.photo&&!isMan}}" class="updatephoto"
+                                                src="../../images/update_photo.png"></image>
+                                          <view wx:if="{{item.man.address}}" class="address"
+                                                data-latitude="{{item.man.latitude}}"
+                                                data-longitude="{{item.man.longitude}}" bindtap="openLocation">
                                                 {{item.man.address}}
                                           </view>
                                     </view>
                                     <view class="update_photo">
-                                          <image wx:if="{{item.woman.photo}}" class="rePhoto" data-src="{{item.woman.photo}}" bindtap="seeImg" src="{{item.woman.photo}}" mode="aspectFill"></image>
-                                          <image wx:if="{{!item.woman.photo&&isWoman}}" class="updatephoto" data-id="{{item.id}}" data-user="woman" bindtap="updateimg" src="../../images/update_photo.png"></image>
-                                          <image wx:if="{{!item.woman.photo&&!isWoman}}" class="updatephoto" src="../../images/update_photo.png"></image>
-                                          <view wx:if="{{item.woman.address}}" class="address">
+                                          <image wx:if="{{item.woman.photo}}" class="rePhoto"
+                                                data-src="{{item.woman.photo}}" bindtap="seeImg"
+                                                src="{{item.woman.photo}}" mode="aspectFill"></image>
+                                          <image wx:if="{{!item.woman.photo&&isWoman}}" class="updatephoto"
+                                                data-id="{{item.id}}" data-user="woman" bindtap="updateimg"
+                                                src="../../images/update_photo.png"></image>
+                                          <image wx:if="{{!item.woman.photo&&!isWoman}}" class="updatephoto"
+                                                src="../../images/update_photo.png"></image>
+                                          <view wx:if="{{item.woman.address}}" class="address"
+                                                data-latitude="{{item.woman.latitude}}"
+                                                data-longitude="{{item.woman.longitude}}" bindtap="openLocation">
                                                 {{item.woman.address}}
                                           </view>
                                     </view>

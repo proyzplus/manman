@@ -8,13 +8,13 @@
 </view>
 <view class="function_label" wx:if="{{classList.length>0 && isMangerment}}">
   <view class="function" wx:for="{{classList}}" wx:key="id" data-id="{{item.id}}" bindtap="navPage">
-    <image src="{{item.icon}}"></image>
+    <image src="{{item.icon}}" mode="aspectFill"></image>
     <text>{{item.name}}</text>
   </view>
 </view>
 <view class="view_fengexian">
   <view></view>
-  <text class="text_fengexian">* 纪念我们的故事 *</text>
+  <text class="text_fengexian">* Romantic memories *</text>
   <view></view>
 </view>
 <view class="goods-container" wx:if="{{commodList.length>0}}">
@@ -60,6 +60,7 @@
   </view>
 </view>
 <view class='mask' bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
-<view class='Drawer' animation="{{animationData}}" wx:if="{{showModalStatus}}" style="position: fixed;top: 0;background: #fddcdc;width:{{safeWidth}}px;height: 100%;left: {{-safeWidth}}px;z-index: 200;">
+<view class='Drawer' animation="{{animationData}}" wx:if="{{showModalStatus}}"
+  style="position: fixed;top: 0;background: #fddcdc;width:{{safeWidth}}px;height: 100%;left: {{-safeWidth}}px;z-index: 200;">
   <userInfo></userInfo>
 </view>

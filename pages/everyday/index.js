@@ -72,6 +72,9 @@ Page({
   },
   onLoad: function (options) {
     const nowTime = time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日 " + time.slice(11, 13) + ":" + time.slice(14, 16);
+    this.setData({
+      today_time: time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日"
+    });
     wx.getSystemInfo({
       success: res => {
         this.setData({
@@ -207,6 +210,7 @@ Page({
       activityList.man.continuous = act_continuous;
       activityList.man.total = act_total;
       activityList.man.sayLove = true;
+      activityList.man.dateList = [this.data.today_time, ...activityList.man.dateList];
     } else {
       toUser = activityList.manOpenid;
       act_continuous = Number(activityList.woman.continuous) + 1;
@@ -214,6 +218,7 @@ Page({
       activityList.woman.continuous = act_continuous;
       activityList.woman.total = act_total;
       activityList.woman.sayLove = true;
+      activityList.woman.dateList = [this.data.today_time, ...activityList.woman.dateList];
     }
     if (this.data.loveWord) {
       let comment = {
@@ -380,5 +385,12 @@ Page({
         });
       }
     });
+  },
+  seeCardDetail() {
+    if (this.data.isManager) {
+      wx.navigateTo({
+        url: '../everyDetail/index',
+      });
+    }
   }
 });
