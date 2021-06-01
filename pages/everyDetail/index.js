@@ -17,7 +17,7 @@ Page({
     this.setData({ objectId: options.objectId });
     const date = new Date();
     const cur_year = date.getFullYear();
-    const cur_month = date.getMonth() + 1;
+    const cur_month = date.getMonth();
     const weeks_ch = ['日', '一', '二', '三', '四', '五', '六'];
     this.calculateEmptyGrids(cur_year, cur_month);
     this.calculateDays(cur_year, cur_month);
@@ -61,7 +61,7 @@ Page({
   },
   // 获取当月共多少天
   getThisMonthDays: function (year, month) {
-    return new Date(year, month, 0).getDate()
+    return new Date(year, month, 0).getDate();
   },
   // 获取当月第一天星期几
   getFirstDayOfWeek: function (year, month) {

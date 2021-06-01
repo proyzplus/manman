@@ -73,7 +73,7 @@ Page({
   onLoad: function (options) {
     const nowTime = time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日 " + time.slice(11, 13) + ":" + time.slice(14, 16);
     this.setData({
-      today_time: time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日"
+      today_time: time.slice(0, 4) + "-" + time.slice(5, 7) + "-" + time.slice(8, 10) + " " + time.slice(11, 13) + ":" + time.slice(14, 16) + ":" + time.slice(17, 19)
     });
     wx.getSystemInfo({
       success: res => {
