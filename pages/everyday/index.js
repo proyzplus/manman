@@ -192,6 +192,9 @@ Page({
     });
   },
   async order_submit() {
+    wx.vibrateShort({
+      type: "medium"
+    });
     wx.showLoading({
       title: "爱你爱你爱你",
       mask: true

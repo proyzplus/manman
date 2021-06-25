@@ -4,7 +4,7 @@
     <image class="openImage" src="../../images/index/openInfo.png" bindtap="openUserInfo"></image>
   </view>
   <custom-swiper imgUrls="{{imgUrls}}"></custom-swiper>
-  <text class="wordMain">{{topic}}</text>
+  <text class="wordMain" bindtap="renavgiteOnlyMe">{{topic}}</text>
 </view>
 <view class="function_label" wx:if="{{classList.length>0 && isMangerment}}">
   <view class="function" wx:for="{{classList}}" wx:key="id" data-id="{{item.id}}" bindtap="navPage">

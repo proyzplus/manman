@@ -11,13 +11,18 @@ Page({
     card_date: [],
     touchS: [0, 0],
     touchE: [0, 0],
-    user: {}
+    user: {},
+    calendarBack: "",
+    dayCountBack: "",
+    everyDetailBack: ""
   },
   onLoad: function (options) {
-    this.setData({ objectId: options.objectId });
+    this.setData({
+      objectId: options.objectId
+    });
     const date = new Date();
     const cur_year = date.getFullYear();
-    const cur_month = date.getMonth();
+    const cur_month = date.getMonth() + 1;
     const weeks_ch = ['日', '一', '二', '三', '四', '五', '六'];
     this.calculateEmptyGrids(cur_year, cur_month);
     this.calculateDays(cur_year, cur_month);
@@ -27,6 +32,16 @@ Page({
       weeks_ch
     });
     this.setTitle();
+    DBAC.doc("cbddf0af60a1cbbd090d1be410d4c616").get({
+      success: res1 => {
+        let ac_data = res1.data;
+        this.setData({
+          calendarBack: ac_data.calendarBack,
+          dayCountBack: ac_data.dayCountBack,
+          everyDetailBack: ac_data.everyDetailBack
+        });
+      }
+    });
     wx.getStorage({
       key: "openId",
       success: (res) => {
@@ -71,7 +86,9 @@ Page({
   calculateEmptyGrids: function (year, month) {
     var that = this;
     //计算每个月时要清零
-    that.setData({ days: [] });
+    that.setData({
+      days: []
+    });
     const firstDayOfWeek = this.getFirstDayOfWeek(year, month);
     if (firstDayOfWeek > 0) {
       for (let i = 0; i < firstDayOfWeek; i++) {
@@ -124,7 +141,9 @@ Page({
         }
       }
     }
-    that.setData({ days: daysArr });
+    that.setData({
+      days: daysArr
+    });
   },
   // 切换控制年月，上一个月，下一个月
   handleCalendar: function (e) {

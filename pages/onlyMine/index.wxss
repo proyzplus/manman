@@ -1,0 +1,218 @@
+page {
+  width: 100%;
+  height: auto;
+  background-image: url("https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/remain.jpg?sign=9a74c89e7e36d5f129510293bc370181&t=1623671532");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.only-mine-content {
+  width: 100%;
+  height: 100%;
+}
+
+.xibei {
+  font-size: 72rpx;
+  letter-spacing: 4rpx;
+}
+
+.xibei text:first-child {
+  color: rgb(199, 195, 195);
+}
+
+.xibei text:nth-child(2) {
+  color: rgb(179, 84, 243);
+  font-weight: 600;
+}
+
+.xibei text:nth-child(3) {
+  color: rgb(247, 238, 238);
+}
+
+.xibei_en {
+  font-size: 40rpx;
+  letter-spacing: 6rpx;
+  color: #fff;
+  line-height: 26rpx;
+}
+
+.main-box {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.qiancai {
+  height: auto;
+  writing-mode: vertical-lr;
+  writing-mode: tb-lr;
+  margin-left: -8rpx;
+  letter-spacing: 4rpx;
+  margin-top: 2rpx;
+}
+
+.qiancai text {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: 200;
+}
+
+.qiancai text:nth-child(2) {
+  color: rgb(255, 0, 0);
+  font-weight: 600;
+}
+
+.qiancai text:nth-child(4) {
+  color: rgb(248, 244, 11);
+  font-weight: 600;
+}
+
+.qiancai text:nth-child(6) {
+  color: #ff6900;
+  font-weight: 600;
+}
+
+.lovelive text:first-child {
+  letter-spacing: 4rpx;
+  font-size: 26rpx;
+  color: rgb(85, 218, 223);
+}
+
+.lovelive text:nth-child(2) {
+  padding-left: 8rpx;
+  font-size: 20rpx;
+  color: rgb(171, 235, 128);
+}
+
+.langman {
+  letter-spacing: 8rpx;
+  margin-top: -8rpx;
+}
+
+.langman text:first-child {
+  color: rgb(255, 0, 0);
+  font-size: 48rpx;
+}
+
+.langman text:nth-child(2) {
+  color: #ff6900;
+  font-size: 44rpx;
+}
+
+.langman text:nth-child(3) {
+  color: rgb(238, 255, 0);
+  font-size: 40rpx;
+}
+
+.langman text:nth-child(4) {
+  color: rgb(135, 253, 0);
+  font-size: 36rpx;
+}
+
+.langman text:nth-child(5) {
+  color: rgb(0, 255, 221);
+  font-size: 32rpx;
+}
+
+.langman text:nth-child(6) {
+  color: rgb(255, 0, 255);
+  font-size: 28rpx;
+}
+
+.langman text:nth-child(7) {
+  color: rgb(255, 0, 255);
+  font-size: 28rpx;
+}
+
+.langman text:nth-child(8) {
+  color: rgb(0, 255, 221);
+  font-size: 32rpx;
+}
+
+.langman text:nth-child(9) {
+  color: rgb(135, 253, 0);
+  font-size: 36rpx;
+}
+
+.langman text:nth-child(10) {
+  color: rgb(238, 255, 0);
+  font-size: 40rpx;
+}
+
+.langman text:nth-child(11) {
+  color: #ff6900;
+  font-size: 44rpx;
+}
+
+.langman text:nth-child(12) {
+  color: rgb(255, 0, 0);
+  font-size: 48rpx;
+}
+
+.nideyiny {
+  font-size: 48rpx;
+  color: #fff;
+}
+
+.normal {
+  height: auto;
+  writing-mode: vertical-lr;
+  writing-mode: tb-lr;
+  letter-spacing: 4rpx;
+  margin-top: 2rpx;
+}
+
+
+.love {
+  width: 48rpx;
+  font-size: 48rpx;
+  color: lightblue;
+}
+
+.ni {
+  width: 54rpx;
+  font-size: 54rpx;
+  color: lightcoral;
+}
+
+.ren {
+  width: 60rpx;
+  font-size: 60rpx;
+  color: lightcyan;
+}
+
+.jin {
+  width: 66rpx;
+  font-size: 66rpx;
+  color: lightgoldenrodyellow;
+}
+
+.jie {
+  width: 72rpx;
+  font-size: 72rpx;
+  color: lightgray;
+}
+
+.zhi {
+  width: 78rpx;
+  font-size: 78rpx;
+  color: lightpink;
+}
+
+.suibi {
+  font-size: 34rpx;
+  color: #fff;
+  margin-left: 10rpx;
+}
+
+.wuren {
+  width: 100%;
+  height: auto;
+  display: flex;
+  font-size: 34rpx;
+}
+
+.wurenno {
+  margin-left: -10rpx;
+  letter-spacing: 8rpx;
+}

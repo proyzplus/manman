@@ -69,6 +69,9 @@ Page({
         });
       }
     });
+    wx.vibrateShort({
+      type: "medium"
+    });
     wx.showLoading({
       title: "袁太太等一下"
     });
@@ -202,5 +205,10 @@ Page({
     if (this.data.isMangerment) {
       this.util("open");
     }
+  },
+  renavgiteOnlyMe() {
+    wx.navigateTo({
+      url: "../onlyMine/index"
+    });
   }
 });

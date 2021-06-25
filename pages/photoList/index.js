@@ -10,6 +10,9 @@ Page({
     this.loading();
   },
   async loading() {
+    wx.vibrateShort({
+      type: "medium"
+    });
     wx.showLoading({
       title: "袁太太等一下",
       mask: true

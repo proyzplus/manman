@@ -1,7 +1,24 @@
 /* pages/Calendar/Calendar.wxss */
 /* 打卡日历 */
 .all {
-      /* margin-top: 20rpx; */
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 1;
+}
+
+.week_calen {
+      width: 96%;
+      height: auto;
+      margin: auto;
+      background-size: 100% 100%;
+      border-radius: 16rpx;
+      background-repeat: no-repeat;
+      margin-top: 60rpx;
 }
 
 .all .bar {
@@ -26,11 +43,11 @@
       padding-right: 40rpx;
       margin: 12rpx;
       border-radius: 50rpx;
-      background-color: #fff;
+      /* background-color: #fff; */
 }
 
 .week_every {
-      color: #ff6900;
+      color: #ff0707;
       font-weight: 600;
       font-size: 28rpx;
 }
@@ -40,7 +57,7 @@
       padding: 10rpx;
       border-radius: 10px;
       /* background-color: #fff; */
-      background-image: url("https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/other/afternoon_ql.png?sign=db969b85aa86208dea2d8c2e51aa9b12&t=1622464571");
+      /* background-image: url("https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/other/afternoon_ql.png?sign=db969b85aa86208dea2d8c2e51aa9b12&t=1622464571"); */
       background-size: 100% 100%;
       background-repeat: no-repeat;
 }
@@ -105,15 +122,16 @@
       justify-content: center;
       /* background-color: #fff; */
       align-items: center;
-      background-image: url("https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/other/home_ql.png?sign=71b752815f95fced9bc3d5a17998b1f1&t=1622464767");
+      /* background-image: url("https://7465-test-01-nreh6-1301410290.tcb.qcloud.la/other/home_ql.png?sign=71b752815f95fced9bc3d5a17998b1f1&t=1622464767"); */
       background-size: 100% 100%;
       background-repeat: no-repeat;
+      margin-top: 60rpx;
 }
 
 .count .number {
-      color: red;
+      color: #530053;
       font-weight: 600;
-      font-size: 60rpx;
+      font-size: 84rpx;
       /* background-color: #fff; */
       width: 100rpx;
       height: 100rpx;
@@ -125,10 +143,10 @@
 
 .count text {
       margin: 10rpx;
-      font-size: 28rpx;
-      color: #ff6900;
+      font-size: 30rpx;
+      color: #efc684;
       font-weight: 600;
-      letter-spacing: 2rpx;
+      letter-spacing: 5rpx;
 }
 
 .heart {

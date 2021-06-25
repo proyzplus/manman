@@ -1,0 +1,86 @@
+<view class="only-mine-content" style="margin-top:{{safeAreaHeader}}px;">
+  <view class="xibeifeng">
+    <view class="xibei">
+      <text></text>
+      <text>我喝西北风</text>
+      <text>你陪吗?</text>
+    </view>
+    <view class="xibei_en">CAN YOU SAY YES OR NO?</view>
+  </view>
+  <view class="main-box">
+    <view class="qiancai">
+      <text>当</text>
+      <text>我</text>
+      <text>为</text>
+      <text>钱财</text>
+      <text>发愁的时候</text>
+      <text>爱不爱</text>
+      <text>有用吗</text>
+    </view>
+    <view style="margin-left:-6rpx">
+      <view class="lovelive">
+        <text>恋爱工作都烦恼 LOVE哪有LIVE好</text>
+        <text>是耳机传达不出的情绪</text>
+      </view>
+      <view class="nideyiny">这一次来你的世界听你的音乐</view>
+      <view class="langman">
+        <text>爱</text>
+        <text>意</text>
+        <text>东</text>
+        <text>升</text>
+        <text>西</text>
+        <text>落</text>
+        <text>浪</text>
+        <text>漫</text>
+        <text>至</text>
+        <text>死</text>
+        <text>不</text>
+        <text>渝</text>
+      </view>
+      <view style="display:flex">
+        <view class="love normal" style="margin-left:-10rpx;">
+          <text style="color:#ff6900">意</text>
+          <text>随风起 风止意可平 山不可平</text>
+        </view>
+        <view class="ni normal">
+          <text style="color: rgb(255, 0, 0);">你</text>
+          <text>追逐世界 我追逐你背影</text>
+        </view>
+        <view class="ren normal">
+          <text>在</text>
+          <text style="color: rgb(255, 0, 0);">人</text>
+          <text>山人海里我只爱你</text>
+        </view>
+        <view class="jin normal">
+          <text>世界</text>
+          <text style="color: rgb(255, 0, 0);">尽</text>
+          <text>头也只想陪你走</text>
+        </view>
+        <view class="jie normal">
+          <text>所有你</text>
+          <text style="color: rgb(255, 0, 0);">皆</text>
+          <text>是最终答案</text>
+        </view>
+        <view class="zhi normal">
+          <text>浮世万千</text>
+          <text style="color: rgb(255, 0, 0);">知</text>
+          <text>你足矣</text>
+        </view>
+        <view class="suibi">
+          为什么有结果的不能是我们？在这个暧昧横行的时代 深情不过只是个笑话 欺骗 玩弄 成为当代风潮的时代 希望永远有人带着诚意来爱我。
+          <view class="wuren">
+            <view class="normal wurenno">无人梦我与前程</view>
+            <view class="normal wurenno">无人拭我相思泪</view>
+            <view class="normal wurenno">无人与我把酒分</view>
+            <view class="normal wurenno">无人陪我夜已深</view>
+            <view class="normal wurenno">无人共我书半生</view>
+            <view class="normal wurenno">无人与我捻熄灯</view>
+            <view class="normal wurenno">无人问我粥可温</view>
+            <view class="normal wurenno">无人与我立黄昏</view>
+          </view>
+          无人便无人 不是不可
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
