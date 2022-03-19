@@ -150,6 +150,11 @@ Component({
             url: '../../pages/doThingLabel/addThing/index',
           });
           break;
+        case "editcommod":
+          wx.navigateTo({
+            url: '../../pages/edit/commod/index',
+          });
+          break;
       }
     },
     async updateimg() {

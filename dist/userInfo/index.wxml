@@ -49,5 +49,9 @@
       <image class="listicon" src="../../images/userInfo/star.png"></image>
       <text class="word">一起去做</text>
     </view>
+    <view class="iconfont" data-type="editcommod" bindtap="bindLabel">
+      <image class="listicon" src="../../images/userInfo/star.png"></image>
+      <text class="word">修改商品图片</text>
+    </view>
   </view>
 </view>

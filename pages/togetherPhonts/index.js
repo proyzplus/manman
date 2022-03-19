@@ -155,6 +155,7 @@ Page({
     });
   },
   updateUserImage(user, img, id) {
+    console.log(user, img, id,"user, img, id")
     let everydayList = this.data.everydayList;
     everydayList.forEach(item => {
       if (Number(item.id) == Number(id)) {
@@ -181,6 +182,9 @@ Page({
     DBAC.doc("28ee4e3e60ae057c1cbd62422e216e90").update({
       data: {
         everydayList: everydayList
+      },
+      success:re=>{
+        console.log(re)
       }
     });
   },

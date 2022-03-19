@@ -1,0 +1,32 @@
+.commod {
+  width: 100%;
+  height: auto;
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 16rpx;
+  border-radius: 8rpx;
+}
+
+.commodName {
+  font-size: 28rpx;
+  color: #ff6900;
+  padding-left: 12rpx;
+}
+
+.updateName {
+  width: 200rpx;
+  text-align: center;
+  padding: 12rpx;
+  margin-top: 48rpx;
+  letter-spacing: 6rpx;
+  font-size: 28rpx;
+  border: 2rpx solid #ff6900;
+  border-radius: 8rpx;
+  margin-left: 12rpx;
+  color: #fff;
+}

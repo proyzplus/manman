@@ -1,0 +1,9 @@
+<view class="commod" wx:for="{{commodList}}" wx:key="id">
+  <view>
+    <image src="{{item.img}}" class="image" mode="aspectFill" />
+  </view>
+  <view>
+    <view class="commodName">{{item.name}}</view>
+    <view class="updateName" bindtap="updateImg" data-id="{{item._id}}">更换图片</view>
+  </view>
+</view>
