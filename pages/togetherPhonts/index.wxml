@@ -20,7 +20,7 @@
                                                 data-src="{{item.man.photo}}" bindtap="seeImg" src="{{item.man.photo}}"
                                                 mode="aspectFill"></image>
                                           <image wx:if="{{!item.man.photo&&isMan}}" class="updatephoto"
-                                                data-id="{{item.id}}" data-user="man" bindtap="updateimg"
+                                                data-id="{{item._id}}" data-user="man" bindtap="updateimg"
                                                 src="../../images/update_photo.png"></image>
                                           <image wx:if="{{!item.man.photo&&!isMan}}" class="updatephoto"
                                                 src="../../images/update_photo.png"></image>
@@ -35,7 +35,7 @@
                                                 data-src="{{item.woman.photo}}" bindtap="seeImg"
                                                 src="{{item.woman.photo}}" mode="aspectFill"></image>
                                           <image wx:if="{{!item.woman.photo&&isWoman}}" class="updatephoto"
-                                                data-id="{{item.id}}" data-user="woman" bindtap="updateimg"
+                                                data-id="{{item._id}}" data-user="woman" bindtap="updateimg"
                                                 src="../../images/update_photo.png"></image>
                                           <image wx:if="{{!item.woman.photo&&!isWoman}}" class="updatephoto"
                                                 src="../../images/update_photo.png"></image>

@@ -39,7 +39,7 @@ Page({
         if (res.result.openid == 'o_BMd5ERRE6PLi2dS08lm89tiMgU') {
           wx.showModal({
             title: "欢迎夫人来到‘慢慢Home’",
-            content: "不见面的日子里，爱并不会消失，只会更加浓烈。我爱你，袁太太！",
+            content: "不见面的日子里，爱并不会消失，只会更加浓烈。我爱你，袁太太！对不起.",
             showCancel: false,
             confirmText: "我也爱你",
             confirmColor: "#f44336",

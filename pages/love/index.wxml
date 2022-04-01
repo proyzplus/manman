@@ -5,7 +5,7 @@
       <view class="comments">
         <input bindinput='dearInput' data-item="{{item}}" bindconfirm='commentDear' type="text" value="{{item.comment}}" placeholder="回复" />
       </view>
-      <view style="line-height:48rpx;" wx:for="{{item.commentList}}">
+      <view style="line-height: 36rpx;" wx:for="{{item.commentList}}">
         <!-- <image style="width:40rpx;height:40rpx;vertical-align: middle;border-radius: 50%;" src="{{item.avatarUrl}}"></image> -->
         <text>{{item.nickName}}：</text>
         <text>{{item.comment}}</text>

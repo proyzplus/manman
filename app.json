@@ -8,7 +8,9 @@
     "pages/articleDetail/index",
     "pages/love/index",
     "pages/photoList/index",
-    "pages/onlyMine/index"
+    "pages/onlyMine/index",
+    "pages/note/index",
+    "pages/togetherPhonts/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

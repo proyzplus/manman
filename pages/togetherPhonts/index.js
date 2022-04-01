@@ -1,4 +1,4 @@
-const DBAC = wx.cloud.database().collection("activity");
+const DBAC = wx.cloud.database().collection("everyDay");
 const DBUSER = wx.cloud.database().collection("userList");
 const dateTimePicker = require('../../utils/util.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min');
@@ -18,7 +18,9 @@ Page({
     woman: {},
     man: {},
     isMan: null,
-    isWoman: null
+    isWoman: null,
+    totalCount: 0,
+    row: 0
   },
   onLoad: function (options) {
     this.getLocationAddress();
@@ -43,26 +45,12 @@ Page({
     });
     const time = dateTimePicker.formatTime();
     const nowTime = time.slice(0, 4) + "年" + time.slice(5, 7) + "月" + time.slice(8, 10) + "日 " + time.slice(11, 13) + ":" + time.slice(14, 16);
-    DBAC.doc("28ee4e3e60ae057c1cbd62422e216e90").get({
-      success: res => {
-        let everydayList = res.data.everydayList;
-        if (everydayList.length == 0) {
-          this.newToday(everydayList, nowTime);
-        } else {
-          let history = (everydayList[0].time).slice(8, 10);
-          if (Number(history) !== Number(time.slice(8, 10))) {
-            this.newToday(everydayList, nowTime);
-          } else {
-            this.setData({
-              everydayList,
-              nowTime
-            });
-          }
-        }
-      }
+    this.setData({
+      nowTime: nowTime
     });
+    this.loading();
   },
-  newToday(everydayList, nowTime) {
+  newToday(everydayList) {
     let today = {
       id: Date.parse(new Date()) / 1000,
       man: {
@@ -77,11 +65,10 @@ Page({
         longitude: null,
         photo: ""
       },
-      time: nowTime
+      time: this.data.nowTime
     };
     this.setData({
       everydayList: [today, ...everydayList],
-      nowTime
     });
   },
   getLocationAddress() {
@@ -91,7 +78,10 @@ Page({
         var latitude = res.latitude;
         var longitude = res.longitude;
         qqmapsdk.reverseGeocoder({
-          location: { latitude: latitude, longitude: longitude },
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
           success: add => {
             this.setData({
               latitude,
@@ -155,38 +145,49 @@ Page({
     });
   },
   updateUserImage(user, img, id) {
-    console.log(user, img, id,"user, img, id")
-    let everydayList = this.data.everydayList;
-    everydayList.forEach(item => {
-      if (Number(item.id) == Number(id)) {
-        if (user == "man") {
-          item.man = {
-            address: this.data.city,
-            latitude: this.data.latitude,
-            longitude: this.data.longitude,
-            photo: img
-          };
-        } else {
-          item.woman = {
-            address: this.data.city,
-            latitude: this.data.latitude,
-            longitude: this.data.longitude,
-            photo: img
-          };
+    console.log(user, img, id, "user, img, id")
+    let obj = {
+      address: this.data.city,
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      photo: img
+    };
+    // 修改
+    if (id) {
+      DBAC.doc(id).update({
+        data: user == "man" ? {
+          man: obj
+        } : {
+          woman: obj
+        },
+        success: res => {
+          this.loading()
         }
-      }
-    });
-    this.setData({
-      everydayList: everydayList
-    });
-    DBAC.doc("28ee4e3e60ae057c1cbd62422e216e90").update({
-      data: {
-        everydayList: everydayList
-      },
-      success:re=>{
-        console.log(re)
-      }
-    });
+      })
+    } else {
+      // 新增
+      DBAC.add({
+        data: {
+          id: Date.parse(new Date()) / 1000,
+          man: user == "man" ? obj : {
+            address: "",
+            latitude: null,
+            longitude: null,
+            photo: ""
+          },
+          woman: user == "woman" ? obj : {
+            address: "",
+            latitude: null,
+            longitude: null,
+            photo: ""
+          },
+          time: this.data.nowTime
+        },
+        success: res => {
+          this.loading()
+        }
+      })
+    }
   },
   seeImg(e) {
     wx.previewImage({
@@ -194,11 +195,64 @@ Page({
       urls: [e.currentTarget.dataset.src]
     });
   },
-  openLocation(e){
+  openLocation(e) {
     wx.openLocation({
       latitude: e.currentTarget.dataset.latitude,
       longitude: e.currentTarget.dataset.longitude,
       scale: 14
+    });
+  },
+  // 下拉刷新
+  async onPullDownRefresh() {
+    wx.showNavigationBarLoading(); //在标题栏中显示加载 
+    await this.loading();
+  },
+  // 上滑加载
+  onReachBottom() {
+    if (this.totalCount !== 0) {
+      if (Number(this.data.row) + 1 < Number(this.data.totalCount)) {
+        this.setData({
+          row: Number(this.data.row) + 1
+        });
+        this.getEveryList();
+      }
+    }
+  },
+  async loading() {
+    wx.cloud.database().collection("everyDay").count({
+      success: tal => {
+        const countResult = tal.total;
+        const batchTimes = Math.ceil(countResult / 10);
+        this.setData({
+          row: 0,
+          totalCount: batchTimes,
+          everydayList: []
+        });
+        this.getEveryList();
+      }
+    });
+  },
+  getEveryList() {
+    wx.cloud.callFunction({
+      name: "getEveryList",
+      data: {
+        row: this.data.row,
+      },
+      success: res => {
+        this.setData({
+          everydayList: this.data.everydayList.concat(res.result.data)
+        });
+        if (this.data.row == 0) {
+          const time = dateTimePicker.formatTime();
+          let history = (this.data.everydayList[0].time).slice(8, 10);
+          if (Number(history) != Number(time.slice(8, 10))) {
+            this.newToday(this.data.everydayList);
+          }
+        }
+        wx.hideLoading();
+        wx.hideNavigationBarLoading(); //完成停止加载
+        wx.stopPullDownRefresh(); //停止下拉刷新 
+      }
     });
   }
 });
