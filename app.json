@@ -10,7 +10,14 @@
     "pages/photoList/index",
     "pages/onlyMine/index",
     "pages/note/index",
-    "pages/togetherPhonts/index"
+    "pages/togetherPhonts/index",
+    "pages/mustDoThings/index",
+    "pages/release/index",
+    "pages/loveAdd/index",
+    "pages/labelCard/index",
+    "pages/doThingLabel/addThing/index",
+    "pages/edit/commod/index",
+    "pages/mineSwiper/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

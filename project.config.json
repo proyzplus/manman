@@ -43,7 +43,7 @@
         "ignoreUploadUnusedFiles": true
     },
     "compileType": "miniprogram",
-    "libVersion": "2.16.0",
+    "libVersion": "2.23.3",
     "appid": "wx2d3bd38e908ab0c2",
     "projectname": "Yikh-0320",
     "debugOptions": {
