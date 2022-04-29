@@ -114,27 +114,27 @@ Component({
       switch (type) {
         case "mine_edit":
           wx.navigateTo({
-            url: '../../pages/mine_edit/index',
+            url: '/pages/mine_edit/index',
           });
           break;
         case "mine_history":
           wx.navigateTo({
-            url: '../../pages/mine_history/index',
+            url: '/pages/mine_history/index',
           });
           break;
         case "release":
           wx.navigateTo({
-            url: '../../pages/release/index',
+            url: '/pages/release/index',
           });
           break;
         case "loveAdd":
           wx.navigateTo({
-            url: '../../pages/loveAdd/index',
+            url: '/pages/loveAdd/index',
           });
           break;
         case "updateCard":
           wx.navigateTo({
-            url: '../../pages/labelCard/index?type=add',
+            url: '/pages/labelCard/index?type=add',
           });
           break;
         case "updateImg":
@@ -142,17 +142,17 @@ Component({
           break;
         case "indexSwiper":
           wx.navigateTo({
-            url: '../../pages/mineSwiper/index',
+            url: '/pages/mineSwiper/index',
           });
           break;
         case "mustDoThing":
           wx.navigateTo({
-            url: '../../pages/doThingLabel/addThing/index',
+            url: '/pages/doThingLabel/addThing/index',
           });
           break;
         case "editcommod":
           wx.navigateTo({
-            url: '../../pages/edit/commod/index',
+            url: '/pages/edit/commod/index',
           });
           break;
       }

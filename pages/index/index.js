@@ -61,12 +61,25 @@ Page({
   async loading() {
     DBAC.get({
       success: res => {
-        this.setData({
-          imgUrls: res.data[1].swiperList,
-          isMangerment: res.data[2].config,
-          classList: res.data[3].classList,
-          topic: res.data[3].topic
-        });
+          console.log(res)
+          res.data.forEach(item => {
+              if(item._id == "b00064a76071eed50decf4d45cb85907"){
+                  this.setData({
+                    imgUrls: item.swiperList,
+                  })
+              }
+              if(item._id == "cbddf0af60a1cbbd090d1be410d4c616"){
+                this.setData({
+                    isMangerment: item.config,
+                })
+            }
+            if(item._id == "28ee4e3e60adf29a1cb77ca852fa5b92"){
+                this.setData({
+                    classList: item.classList,
+                    topic: item.topic
+                })
+            } 
+          }); 
       }
     });
     wx.vibrateShort({
